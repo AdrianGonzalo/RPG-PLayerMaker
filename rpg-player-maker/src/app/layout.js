@@ -1,11 +1,6 @@
 import {VT323} from 'next/font/google'
 import "./globals.css";
 
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
 const vt323 = VT323({
   subsets: ['latin'],
   weight: ['400'],
