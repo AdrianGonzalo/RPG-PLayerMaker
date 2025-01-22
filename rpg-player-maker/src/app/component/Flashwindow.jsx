@@ -1,27 +1,50 @@
+"use client";
+
+import { useState } from "react";
+
 const Window = () => {
-    return (
-        <div className="bg-[var(--color2)] m-20 rounded-xl">
-            <div className="flex flex-col items-center mt-20 m-10">
-                <p className="mt-6 text-2xl">
-                    <span className="text-5xl">
-                        Bienvenidos aventureros
-                    </span>
+  const [visible, setVisible] = useState(true);
 
-                    <br></br>
+  const handleButtonClick = () => {
+    setVisible(false);
+  };
 
-                En esta aplicación podréis crear a vuestro aventurero favorito eligiendo raza, subraza, clase, subclase y trasfondo.
+  return (
+    <>
+      {visible && (
+        <div className="flex justify-center items-center bg-[var(--background)]">
+          <div className="bg-[var(--color2)] m-20 rounded-xl w-[1000px] h-auto">
+            <div className="flex flex-col items-center m-10">
+              <p className="text-5xl flex justify-center mt-4">
+                Bienvenidos aventureros
+              </p>
 
-                También la aplicación os irá guiando con las ventajas o desventajas que tiene cada raza, clase...
+              <br></br>
 
-                El aventurero por ahora será lv 1, en un futuro se le podrán subir niveles.
+              <p className="text-2xl">
+                En esta aplicación podréis crear a vuestro aventurero favorito
+                eligiendo raza, subraza, clase, subclase y trasfondo. También la
+                aplicación os irá guiando con las ventajas o desventajas que
+                tiene cada raza, clase... El aventurero por ahora será lv 1, en
+                un futuro se le podrán subir niveles. Disfrutad y gracias por
+                confiar en mi &lt;3 :)
+              </p>
 
-                Disfrutad y gracias por confiar en mi &lt;3 :) </p>
-                <div className="mb-6 mt-6 w-full bg-[var-(--color)]">
-                    <button style={{ color: 'var(--color3)' }}>Forjar a tu Heroe</button>
-                </div>
+              <div className="mb-6 mt-6 w-full bg-[var(--background)] rounded-lg p-2 flex justify-center">
+                <button
+                  className="text-2xl"
+                  style={{ color: "var(--color3)" }}
+                  onClick={handleButtonClick}
+                >
+                  Forjar a tu Heroe
+                </button>
+              </div>
             </div>
+          </div>
         </div>
-    )
-}
+      )}
+    </>
+  );
+};
 
-export default Window
+export default Window;
