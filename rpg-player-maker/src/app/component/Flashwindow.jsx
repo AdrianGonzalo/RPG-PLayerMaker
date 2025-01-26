@@ -1,5 +1,7 @@
 "use client";
 
+import Button from "./Button";
+
 import { useState } from "react";
 
 const Window = () => {
@@ -14,7 +16,7 @@ const Window = () => {
       {visible && (
         <div className="flex justify-center items-center bg-[var(--background)]">
           <div className="bg-[var(--color2)] m-20 rounded-xl w-[1000px] h-auto">
-            <div className="flex flex-col items-center m-10">
+            <div className="flex flex-col items-center m-5">
               <p className="text-5xl flex justify-center mt-4">
                 Bienvenidos aventureros
               </p>
@@ -30,15 +32,7 @@ const Window = () => {
                 confiar en mi &lt;3 :)
               </p>
 
-              <div className="mb-6 mt-6 w-full bg-[var(--background)] rounded-lg p-2 flex justify-center">
-                <button
-                  className="text-2xl"
-                  style={{ color: "var(--color3)" }}
-                  onClick={handleButtonClick}
-                >
-                  Forjar a tu Heroe
-                </button>
-              </div>
+              <Button onClick={handleButtonClick}>Forjar a tu Heroe</Button>
             </div>
           </div>
         </div>
