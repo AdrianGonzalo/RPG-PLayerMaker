@@ -1,24 +1,79 @@
+import { useState } from "react";
+
 const Background = () => {
+  const [background, setBackground] = useState("null");
+
+  const handleBackground = (e) => {
+    setBackground(e);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <p className="text-4xl mb-5">Elige tu Trasfondo</p>
       <div className="grid grid-cols-3 gap-2 mb-10">
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+        <button
+          onClick={() => handleBackground("ACÓLITO")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "ACÓLITO"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           ACÓLITO
         </button>
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+
+        <button
+          onClick={() => handleBackground("CRIMINAL")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "CRIMINAL"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           CRIMINAL
         </button>
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+
+        <button
+          onClick={() => handleBackground("SOLDADO")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "SOLDADO"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           SOLDADO
         </button>
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+
+        <button
+          onClick={() => handleBackground("ERUDITO")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "ERUDITO"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           ERUDITO
         </button>
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+
+        <button
+          onClick={() => handleBackground("MARINERO")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "MARINERO"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           MARINERO
         </button>
-        <button className="w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg">
+
+        <button
+          onClick={() => handleBackground("HÉROE DEL PUEBLO")}
+          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+            background === "HÉROE DEL PUEBLO"
+              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
+              : "bg-[var(--color2)]" // no está seleccionado
+          }`}
+        >
           HÉROE DEL PUEBLO
         </button>
       </div>
