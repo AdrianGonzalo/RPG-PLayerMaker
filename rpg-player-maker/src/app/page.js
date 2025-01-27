@@ -10,8 +10,8 @@ export default function Home() {
     <>
       <Header />
       <Window />
-      <Footer />
       <Allcreate />
+      <Footer />
     </>
   );
 }

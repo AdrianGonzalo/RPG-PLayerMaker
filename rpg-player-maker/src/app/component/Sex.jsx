@@ -9,7 +9,9 @@ const Sex = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-4xl mb-5">Elige tu Sexo</p>
+      <p className="text-4xl mb-5 underline decoration-2 underline-offset-4">
+        Elige tu Sexo
+      </p>
       <div className="flex gap-2 mb-10">
         <button
           onClick={() => handleSelectSex("HOMBRE")}

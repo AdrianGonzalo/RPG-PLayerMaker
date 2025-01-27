@@ -20,7 +20,7 @@ const Allcreate = () => {
           <Class />
           <Background />
           <Attributes />
-
+          // Life
           <Button>Forja tu Heroe</Button>
         </div>
       </div>

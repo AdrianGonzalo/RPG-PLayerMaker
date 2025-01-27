@@ -9,7 +9,9 @@ const Background = () => {
 
   return (
     <div className="flex flex-col items-center">
-      <p className="text-4xl mb-5">Elige tu Trasfondo</p>
+      <p className="text-4xl mb-5 underline decoration-2 underline-offset-4">
+        Elige tu Trasfondo
+      </p>
       <div className="grid grid-cols-3 gap-2 mb-10">
         <button
           onClick={() => handleBackground("ACÓLITO")}
