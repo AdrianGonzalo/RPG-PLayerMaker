@@ -6,6 +6,7 @@ import Race from "./Race";
 import Class from "./Class";
 import Background from "./Background";
 import Attributes from "./Attributes";
+import Life from "./Life";
 
 import Button from "./Button";
 
@@ -20,7 +21,8 @@ const Allcreate = () => {
           <Class />
           <Background />
           <Attributes />
-          // Life
+          <Life />
+
           <Button>Forja tu Heroe</Button>
         </div>
       </div>
