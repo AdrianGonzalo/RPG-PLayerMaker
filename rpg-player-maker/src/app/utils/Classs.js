@@ -1,4 +1,4 @@
-const classs = [
+export const clases = [
   {
     //Bárbaro
     name: "Bárbaro",
@@ -210,6 +210,48 @@ const classs = [
       {
         name: "Escuela de Evocación",
         features: ["Moldear conjuros", "Explosión potenciada"],
+      },
+    ],
+  },
+  {
+    // Hechicero
+    name: "Hechicero",
+    hitDie: "d6",
+    primaryAbility: "Carisma",
+    weapons: "Dagas, dardos, hondas, bastones y ballestas ligeras",
+    savingThrows: ["Constitución", "Carisma"],
+    features: ["Magia salvaje", "Recuperación arcana"],
+    subclasses: [
+      {
+        name: "Linaje dracónico",
+        features: ["Resistencia dracónica", "Aliento dracónico"],
+      },
+      {
+        name: "Hechicería de la magia salvaje",
+        features: ["Surge de magia salvaje", "Magia incontrolable"],
+      },
+    ],
+  },
+  {
+    // Pícaro
+    name: "Pícaro",
+    hitDie: "d8",
+    primaryAbility: "Destreza",
+    weapons: "Armas simples, ballesta de mano, espadas cortas, dagas, y arcos",
+    savingThrows: ["Destreza", "Inteligencia"],
+    features: ["Trucos", "Evasión"],
+    subclasses: [
+      {
+        name: "Ladrón",
+        features: ["Robo sigiloso", "Ataque furtivo"],
+      },
+      {
+        name: "Asesino",
+        features: ["Golpe mortal", "Imitación del engaño"],
+      },
+      {
+        name: "Explorador Arcano",
+        features: ["Tácticas letales", "Rapidez"],
       },
     ],
   },
