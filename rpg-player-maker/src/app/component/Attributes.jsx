@@ -96,30 +96,36 @@ const Attributes = () => {
   ];
 
   const rollDice = () => {
-    // Función para tirar el dado
     const randomNumber = Math.floor(Math.random() * 6) + 1;
     const newRolls = [...roll, randomNumber];
 
     if (newRolls.length === 4) {
-      const sortedRolls = [...newRolls].sort((a, b) => a - b);
-      const lowest = sortedRolls[0];
-      const sumOfHighest = sortedRolls.slice(1).reduce((a, b) => a + b, 0);
+      // Primero, mostramos la cuarta tirada
+      setRoll(newRolls);
 
-      setDiscarded(lowest);
+      // Esperamos un momento antes de procesar el descarte y el cambio de atributo
+      setTimeout(() => {
+        const sortedRolls = [...newRolls].sort((a, b) => a - b);
+        const lowest = sortedRolls[0];
+        const sumOfHighest = sortedRolls.slice(1).reduce((a, b) => a + b, 0);
 
-      // Asigna el total al atributo actual
-      setTotals((prevTotals) => ({
-        ...prevTotals,
-        [currentAttribute]: sumOfHighest,
-      }));
+        setDiscarded(lowest);
 
-      // Pasa al siguiente atributo
-      const nextIndex = attributes.indexOf(currentAttribute) + 1;
-      setCurrentAttribute(attributes[nextIndex] || ""); // Vacío si no hay más atributos
+        setTotals((prevTotals) => ({
+          ...prevTotals,
+          [currentAttribute]: sumOfHighest,
+        }));
 
-      // Reinicia tiradas
-      setRoll([]);
-      setDiscarded(null);
+        // Esperamos otro momento antes de cambiar de atributo
+        setTimeout(() => {
+          const nextIndex = attributes.indexOf(currentAttribute) + 1;
+          setCurrentAttribute(attributes[nextIndex] || ""); // Vacío si no hay más atributos
+
+          // Reiniciamos los valores para la siguiente ronda
+          setRoll([]);
+          setDiscarded(null);
+        }, 1000); // Espera antes de cambiar de atributo
+      }, 1000); // Espera antes de procesar la cuarta tirada
     } else {
       setRoll(newRolls);
     }
@@ -148,9 +154,8 @@ const Attributes = () => {
               key={attr}
               className="bg-[var(--color2)] rounded-lg p-2 text-center mb-10 w-[200px]"
             >
-              <p className="text-2xl">
-                {attr} <span className="text-xl">- {totals[attr] || "-"}</span>
-              </p>
+              <p className="text-2xl">{attr}</p>
+              <p className="text-xl">Total {totals[attr] || "-"}</p>
             </div>
           ))}
         </div>
@@ -172,11 +177,11 @@ const Attributes = () => {
                 <div className="w-[115px] h-[115px] bg-[#6167AA] border-slate-900 border-4 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
                 <img src="/d6.svg" alt="d6 vector" className="mb-4" />
               </div>
-              <p className="text-2xl mb-4">Primera Tirada: {roll[0] || "-"}</p>
-              <p className="text-2xl mb-4">Segunda Tirada: {roll[1] || "-"}</p>
-              <p className="text-2xl mb-4">Tercera Tirada: {roll[2] || "-"}</p>
-              <p className="text-2xl mb-4">Cuarta Tirada: {roll[3] || "-"}</p>
-              <p className="text-2xl mb-4">Descarte: {discarded || "-"}</p>
+              <p className="text-2xl mb-6">Primera Tirada: {roll[0] || "-"}</p>
+              <p className="text-2xl mb-6">Segunda Tirada: {roll[1] || "-"}</p>
+              <p className="text-2xl mb-6">Tercera Tirada: {roll[2] || "-"}</p>
+              <p className="text-2xl mb-6">Cuarta Tirada: {roll[3] || "-"}</p>
+              <p className="text-2xl mb-10">Descarte: {discarded || "-"}</p>
               <button
                 className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
                 onClick={resetAttribute}
