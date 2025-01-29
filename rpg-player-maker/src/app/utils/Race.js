@@ -1,10 +1,12 @@
-const razas = {
+export const razas = {
   elfo: {
+    nombre: "Elfo",
     bonificadores: { destreza: 2 },
     pasos: 30,
     visionEnLaOscuridad: 60,
     subrazas: {
       drow: {
+        nombre: "Drow",
         bonificadores: { carisma: 1 },
         magia: ["Oscuridad", "Danza de las sombras"],
         pasos: 30,
@@ -12,12 +14,14 @@ const razas = {
       },
 
       elfoBosque: {
+        nombre: "Elfo del bosque",
         bonificadores: { sabiduria: 1 },
         pasos: 35,
         visionEnLaOscuridad: 60,
       },
 
       elfoAlto: {
+        nombre: "Elfo Alto",
         bonificadores: { inteligencia: 1 },
         magia: ["Truco"],
         pasos: 30,
@@ -25,6 +29,7 @@ const razas = {
       },
 
       elfoGris: {
+        nombre: "Elfo Gris",
         bonificadores: { sabiduria: 1 },
         pasos: 30,
         visionEnLaOscuridad: 60,
@@ -33,6 +38,7 @@ const razas = {
   },
 
   humano: {
+    nombre: "Humano",
     bonificadores: {
       fuerza: 1,
       destreza: 1,
@@ -46,29 +52,34 @@ const razas = {
   },
 
   tiefling: {
+    nombre: "Tiefling",
     bonificadores: { inteligencia: 2, constitucion: 1 },
     pasos: 30,
     visionEnLaOscuridad: 60,
   },
 
   semiOrco: {
+    nombre: "Semi-orco",
     bonificadores: { fuerza: 2, constitucion: 1 },
     pasos: 30,
     visionEnLaOscuridad: 60,
   },
 
   enano: {
+    nombre: "Enano",
     bonificadores: { fuerza: 2, constitucion: 2 },
     pasos: 25,
     visionEnLaOscuridad: 60,
     subrazas: {
       enanoMontaña: {
+        nombre: "Enano de Montaña",
         bonificadores: { fuerza: 1 },
         pasos: 25,
         visionEnLaOscuridad: 60,
       },
 
       enanoColina: {
+        nombre: "Enano de Colina",
         bonificadores: { constitucion: 1 },
         pasos: 25,
         visionEnLaOscuridad: 60,
@@ -77,29 +88,34 @@ const razas = {
   },
 
   semiElfo: {
+    nombre: "Semi-elfo",
     bonificadores: { fuerza: 1, destreza: 1, inteligencia: 1 },
     pasos: 30,
     visionEnLaOscuridad: 60,
   },
 
   mediano: {
+    nombre: "Mediano",
     bonificadores: { destreza: 2 },
     pasos: 25,
     visionEnLaOscuridad: 0,
   },
 
   gnomo: {
+    nombre: "Gnomo",
     bonificadores: { inteligencia: 2, constitucion: 1 },
     pasos: 25,
     visionEnLaOscuridad: 60,
     subrazas: {
       gnomoBosque: {
+        nombre: "Gnomo del Bosque",
         bonificadores: { sabiduria: 1 },
         pasos: 25,
         visionEnLaOscuridad: 60,
       },
 
       gnomoRoca: {
+        nombre: "Gnomo de Roca",
         bonificadores: { constitucion: 1 },
         pasos: 25,
         visionEnLaOscuridad: 60,
@@ -108,6 +124,7 @@ const razas = {
   },
 
   dragonborn: {
+    nombre: "Dragonborn",
     bonificadores: { fuerza: 2, carisma: 1 },
     pasos: 30,
     visionEnLaOscuridad: 0,
