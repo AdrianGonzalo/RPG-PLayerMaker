@@ -7,7 +7,7 @@ const Name = () => {
       <input
         type="text"
         placeholder="Escribe el nombre de tu héroe legendario..."
-        className="w-[450px] bg-[var(--background)] border-[var(--bordercreate)] border-2 rounded-lg p-1 text-center mb-10"
+        className="w-[550px] bg-[var(--background)] border-[var(--bordercreate)] border-2 rounded-lg p-1 text-center mb-10 text-2xl"
       />
     </div>
   );

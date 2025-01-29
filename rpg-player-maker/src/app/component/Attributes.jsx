@@ -181,7 +181,10 @@ const Attributes = () => {
               <p className="text-2xl mb-6">Segunda Tirada: {roll[1] || "-"}</p>
               <p className="text-2xl mb-6">Tercera Tirada: {roll[2] || "-"}</p>
               <p className="text-2xl mb-6">Cuarta Tirada: {roll[3] || "-"}</p>
-              <p className="text-2xl mb-10">Descarte: {discarded || "-"}</p>
+              <p className="text-2xl mb-10">
+                Descarte:{" "}
+                <span className="text-red-500">{discarded || "-"}</span>
+              </p>
               <button
                 className="mt-4 bg-red-500 text-white px-4 py-2 rounded"
                 onClick={resetAttribute}
