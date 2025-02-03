@@ -1,10 +1,6 @@
-import { useState } from "react";
-
-const Sex = () => {
-  const [selectedSex, setSelectedSex] = useState("null");
-
+const Sex = ({ character, setCharacter }) => {
   const handleSelectSex = (sex) => {
-    setSelectedSex(sex);
+    setCharacter({ ...character, sex });
   };
 
   return (
@@ -16,7 +12,7 @@ const Sex = () => {
         <button
           onClick={() => handleSelectSex("HOMBRE")}
           className={`w-[200px] text-xl p-1 rounded-lg ${
-            selectedSex === "HOMBRE"
+            character.sex === "HOMBRE"
               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
               : "bg-[var(--color2)]" // no está seleccionado
           }`}
@@ -26,7 +22,7 @@ const Sex = () => {
         <button
           onClick={() => handleSelectSex("MUJER")}
           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            selectedSex === "MUJER"
+            character.sex === "MUJER"
               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
               : "bg-[var(--color2)]" // no está seleccionado
           }`}
