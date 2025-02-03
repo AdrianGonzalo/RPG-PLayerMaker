@@ -1,170 +1,37 @@
-// import { useState } from "react";
-
-// const Class = () => {
-//   const [selectedClass, setSelectedClass] = useState("null");
-
-//   const handleSelectClass = (clase) => {
-//     setSelectedClass(clase);
-//   };
-
-//   return (
-//     <div className="flex flex-col items-center">
-//       <p className="text-4xl mb-5 underline decoration-2 underline-offset-4">
-//         Elige tu Clase
-//       </p>
-//       <div className="grid grid-cols-3 gap-2 mb-10">
-//         <button
-//           onClick={() => handleSelectClass("BÁRBARO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "BÁRBARO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           BÁRBARO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("BARDO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "BARDO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           BARDO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("CLÉRIGO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "CLÉRIGO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           CLÉRIGO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("DRUIDA")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "DRUIDA"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           DRUIDA
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("GUERRERO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "GUERRERO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           GUERRERO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("MONJE")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "MONJE"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           MONJE
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("PALADÍN")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "PALADÍN"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           PALADÍN
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("EXPLORADOR")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "EXPLORADOR"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           EXPLORADOR
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("PÍCARO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "PÍCARO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           PÍCARO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("HECHIZERO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "HECHIZERO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           HECHIZERO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("BRUJO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "BRUJO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           BRUJO
-//         </button>
-
-//         <button
-//           onClick={() => handleSelectClass("MAGO")}
-//           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-//             selectedClass === "MAGO"
-//               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-//               : "bg-[var(--color2)]" // no está seleccionado
-//           }`}
-//         >
-//           MAGO
-//         </button>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Class;
-
-import { useState } from "react";
 import { clases } from "../utils/Classs";
 
-const Class = () => {
-  const [selectedClass, setSelectedClass] = useState(null);
-  const [selectedSubclass, setSelectedSubclass] = useState(null);
-
+const Class = ({ character, setCharacter }) => {
+  // Esta función selecciona la clase
   const handleSelectClass = (clase) => {
-    setSelectedClass(clase);
-    setSelectedSubclass(null);
+    setCharacter({ ...character, clase, subclass: null }); // Reinicia la subclase cuando se selecciona una nueva clase
   };
 
-  const handleSelectSubclass = (subclass) => {
-    setSelectedSubclass(subclass);
+  // Esta función selecciona la subclase
+  const handleSelectSubclass = (subclassKey) => {
+    const selectedSubclass = selectedClass.subclasses[subclassKey]; // Accede a la subclase usando la clave
+    setCharacter({ ...character, subclass: selectedSubclass.name }); // Almacena el nombre de la subclase seleccionada
+  };
+
+  // Obtenemos los detalles de la clase seleccionada
+  const selectedClass = clases[character.clase];
+  // Si hay una subclase seleccionada, obtenemos sus detalles
+  const selectedSubclass = character.subclass
+    ? selectedClass?.subclasses[
+        Object.keys(selectedClass.subclasses).find(
+          (subclassKey) =>
+            selectedClass.subclasses[subclassKey].name === character.subclass
+        )
+      ]
+    : null;
+
+  // Función auxiliar para manejar valores que pueden no estar definidos
+  const safeJoin = (value) => {
+    if (Array.isArray(value) && value.length > 0) {
+      return value.join(", ");
+    } else if (typeof value === "string" && value.trim() !== "") {
+      return value; // Si es un string no vacío, lo mostramos tal cual
+    }
+    return "No disponible"; // Si no es un array o un string válido
   };
 
   return (
@@ -173,6 +40,7 @@ const Class = () => {
         Elige tu Clase
       </p>
 
+      {/* Mostrar las clases disponibles */}
       <div className="grid grid-cols-3 gap-2 mb-10">
         {Object.keys(clases).map((classKey) => {
           const clase = clases[classKey];
@@ -181,7 +49,7 @@ const Class = () => {
               key={classKey}
               onClick={() => handleSelectClass(classKey)}
               className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-                selectedClass === classKey
+                character.clase === classKey
                   ? "bg-blue-500 text-[var(--color5)]"
                   : "bg-[var(--color2)]"
               }`}
@@ -192,28 +60,68 @@ const Class = () => {
         })}
       </div>
 
-      {selectedClass && clases[selectedClass].subclasses && (
-        <div className="mt-5 mb-6">
+      {/* Mostrar detalles de la clase seleccionada */}
+      {selectedClass && (
+        <div className="mt-5 mb-6 w-[620px] text-center text-xl">
+          <p className="text-4xl mb-4 text-center">Detalles de la Clase</p>
+          <div className="bg-[var(--color6)] rounded-xl p-4">
+            <p>
+              <strong>Dado de Daño:</strong> {selectedClass.hitDie}
+            </p>
+            <p>
+              <strong>Habilidad Primaria:</strong>{" "}
+              {selectedClass.primaryAbility}
+            </p>
+            <p>
+              <strong>Competencia de Armas:</strong>{" "}
+              {safeJoin(selectedClass.weapons)}
+            </p>
+            <p>
+              <strong>Tiros de Salvación:</strong>{" "}
+              {safeJoin(selectedClass.savingThrows)}
+            </p>
+            <p>
+              <strong>Características:</strong>{" "}
+              {safeJoin(selectedClass.features)}
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Mostrar subclases si existen */}
+      {selectedClass?.subclasses && (
+        <div className="mt-5 mb-6 w-[620px] text-center text-xl">
           <p className="text-3xl mb-4 text-center">Elige tu Subclase</p>
           <div className="grid grid-cols-3 gap-2">
-            {Object.keys(clases[selectedClass].subclasses).map(
-              (subclassKey) => {
-                const subclass = clases[selectedClass].subclasses[subclassKey];
-                return (
-                  <button
-                    key={subclassKey}
-                    onClick={() => handleSelectSubclass(subclassKey)}
-                    className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-                      selectedSubclass === subclassKey
-                        ? "bg-blue-500 text-[var(--color5)]"
-                        : "bg-[var(--color2)]"
-                    }`}
-                  >
-                    {subclass.name}
-                  </button>
-                );
-              }
-            )}
+            {Object.keys(selectedClass.subclasses).map((subclassKey) => {
+              const subclass = selectedClass.subclasses[subclassKey];
+              return (
+                <button
+                  key={subclassKey}
+                  onClick={() => handleSelectSubclass(subclassKey)}
+                  className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+                    character.subclass === subclass.name
+                      ? "bg-blue-500 text-[var(--color5)]"
+                      : "bg-[var(--color2)]"
+                  }`}
+                >
+                  {subclass.name}
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {/* Mostrar detalles de la subclase seleccionada */}
+      {selectedSubclass && (
+        <div className="mt-5 mb-6 w-[620px] text-center text-xl">
+          <p className="text-4xl mb-4 text-center">Detalles de la Subclase</p>
+          <div className="bg-[var(--color6)] rounded-xl p-4">
+            <p>
+              <strong>Características:</strong>{" "}
+              {safeJoin(selectedSubclass.features)}
+            </p>
           </div>
         </div>
       )}
