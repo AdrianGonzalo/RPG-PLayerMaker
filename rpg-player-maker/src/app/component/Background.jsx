@@ -1,10 +1,8 @@
-import { useState } from "react";
+import { background as backgrounds } from "../utils/Background";
 
-const Background = () => {
-  const [background, setBackground] = useState("null");
-
-  const handleBackground = (e) => {
-    setBackground(e);
+const Background = ({ character, setCharacter }) => {
+  const handleBackground = (backgroundKey) => {
+    setCharacter({ ...character, background: backgrounds[backgroundKey] });
   };
 
   return (
@@ -12,73 +10,40 @@ const Background = () => {
       <p className="text-4xl mb-5 underline decoration-2 underline-offset-4">
         Elige tu Trasfondo
       </p>
-      <div className="grid grid-cols-3 gap-2 mb-10">
-        <button
-          onClick={() => handleBackground("ACÓLITO")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "ACÓLITO"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          ACÓLITO
-        </button>
-
-        <button
-          onClick={() => handleBackground("CRIMINAL")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "CRIMINAL"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          CRIMINAL
-        </button>
-
-        <button
-          onClick={() => handleBackground("SOLDADO")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "SOLDADO"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          SOLDADO
-        </button>
-
-        <button
-          onClick={() => handleBackground("ERUDITO")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "ERUDITO"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          ERUDITO
-        </button>
-
-        <button
-          onClick={() => handleBackground("MARINERO")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "MARINERO"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          MARINERO
-        </button>
-
-        <button
-          onClick={() => handleBackground("HÉROE DEL PUEBLO")}
-          className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            background === "HÉROE DEL PUEBLO"
-              ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
-              : "bg-[var(--color2)]" // no está seleccionado
-          }`}
-        >
-          HÉROE DEL PUEBLO
-        </button>
+      <div className="grid grid-cols-3 gap-2 mb-8">
+        {Object.keys(backgrounds).map((backgroundKey) => {
+          const backgroundObj = backgrounds[backgroundKey];
+          return (
+            <button
+              key={backgroundKey}
+              onClick={() => handleBackground(backgroundKey)}
+              className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
+                character.background &&
+                character.background.name === backgroundObj.name
+                  ? "bg-blue-500 text-[var(--color5)]"
+                  : "bg-[var(--color2)]"
+              }`}
+            >
+              {backgroundObj.name}
+            </button>
+          );
+        })}
       </div>
+
+      {character.background && (
+        <div className="mt-5 mb-6 w-[620px] text-center text-xl">
+          <p className="text-4xl mb-4 text-center">Detalles del Trasfondo</p>
+          <div className="bg-[var(--color6)] rounded-xl p-4">
+            <p>{character.background.description}</p>
+            <div className="mt-3 flex justify-center gap-4">
+              <span>• Habilidades:</span>
+              {character.background.features.map((feature, index) => (
+                <span key={index}>{feature}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
