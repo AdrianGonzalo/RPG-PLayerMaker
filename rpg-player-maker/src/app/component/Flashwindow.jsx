@@ -4,11 +4,12 @@ import Button from "./Button";
 
 import { useState } from "react";
 
-const Window = () => {
+const Window = ({ onAccept }) => {
   const [visible, setVisible] = useState(true);
 
   const handleButtonClick = () => {
     setVisible(false);
+    onAccept();
   };
 
   return (
