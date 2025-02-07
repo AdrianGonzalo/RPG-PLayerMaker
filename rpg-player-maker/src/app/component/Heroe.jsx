@@ -10,12 +10,12 @@ const Heroe = ({ character }) => {
         </p>
         <div className="flex justify-center">
           <div className="flex flex-col justify-center">
-            <p>Fuerza 13</p>
-            <p>Destreza 16</p>
-            <p>Constitucion 13</p>
-            <p>Inteligencia 11</p>
-            <p>Sabiduria 6</p>
-            <p>Carisma 8</p>
+            <p>Fuerza {character.attributes.Fuerza}</p>
+            <p>Destreza {character.attributes.Destreza}</p>
+            <p>Constitucion {character.attributes.Constitución}</p>
+            <p>Inteligencia {character.attributes.Inteligencia}</p>
+            <p>Sabiduria {character.attributes.Sabiduría}</p>
+            <p>Carisma {character.attributes.Carisma}</p>
           </div>
           <div className="bg-black w-[200px] h-[200px] p-16 m-6 ">Imagen</div>
           <div className="flex flex-col justify-center">
