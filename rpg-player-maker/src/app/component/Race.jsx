@@ -2,11 +2,24 @@ import { razas } from "../utils/Race";
 
 const Race = ({ character, setCharacter }) => {
   const handleSelectRace = (race) => {
-    setCharacter({ ...character, race, subrace: null }); // Resetea subraza al seleccionar nueva raza
+    const selectedRace = razas[race];
+    setCharacter({
+      ...character,
+      race,
+      subrace: null,
+      speed: selectedRace ? selectedRace.pasos : 0,
+    });
   };
 
   const handleSelectSubrace = (subrace) => {
-    setCharacter({ ...character, subrace });
+    const selectedRace = razas[character.race];
+    const selectedSubrace = selectedRace?.subrazas[subrace];
+
+    setCharacter({
+      ...character,
+      subrace,
+      speed: selectedSubrace.pasos,
+    });
   };
 
   const selectedRace = razas[character.race];

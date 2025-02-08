@@ -28,7 +28,7 @@ export const razas = {
         visionEnLaOscuridad: 60,
       },
 
-      elfoGris: {
+      eladrin: {
         nombre: "Elfo Gris",
         bonificadores: { sabiduria: 1 },
         pasos: 30,
@@ -105,7 +105,7 @@ export const razas = {
     nombre: "Gnomo",
     bonificadores: { inteligencia: 2, constitucion: 1 },
     pasos: 25,
-    visionEnLaOscuridad: 60,
+    visionEnLaOscuridad: 0,
     subrazas: {
       gnomoBosque: {
         nombre: "Gnomo del Bosque",
@@ -118,7 +118,7 @@ export const razas = {
         nombre: "Gnomo de Roca",
         bonificadores: { constitucion: 1 },
         pasos: 25,
-        visionEnLaOscuridad: 60,
+        visionEnLaOscuridad: 0,
       },
     },
   },
