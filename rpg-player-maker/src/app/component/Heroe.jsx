@@ -21,7 +21,7 @@ const Heroe = ({ character }) => {
           <div className="flex flex-col justify-center">
             <p>9 Vida</p>
             <p>{character.speed} Velocidad</p>
-            <p>60 Vision oscuridad</p>
+            <p>{character.darkVision} Vision oscuridad</p>
           </div>
         </div>
         <p className="mb-4">Sexo: {character.sex}</p>

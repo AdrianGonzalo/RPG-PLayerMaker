@@ -8,6 +8,7 @@ const Race = ({ character, setCharacter }) => {
       race,
       subrace: null,
       speed: selectedRace ? selectedRace.pasos : 0,
+      darkVision: selectedRace ? selectedRace.visionEnLaOscuridad : 0,
     });
   };
 
@@ -18,7 +19,10 @@ const Race = ({ character, setCharacter }) => {
     setCharacter({
       ...character,
       subrace,
-      speed: selectedSubrace.pasos,
+      speed: selectedSubrace ? selectedSubrace.pasos : selectedRace.pasos,
+      darkVision: selectedSubrace
+        ? selectedSubrace.visionEnLaOscuridad
+        : selectedRace.visionEnLaOscuridad,
     });
   };
 
