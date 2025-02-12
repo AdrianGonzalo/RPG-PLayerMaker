@@ -25,6 +25,7 @@ const Allcreate = () => {
     race: null,
     subrace: null,
     class: null,
+    subclass: null,
     background: null,
     attributes: {},
   });
