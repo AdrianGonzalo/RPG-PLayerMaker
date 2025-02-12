@@ -2,7 +2,8 @@ import { clases } from "../utils/Classs";
 import { razas } from "../utils/Race";
 
 const Heroe = ({ character }) => {
-  const selectedClass = clases[character.clase];
+  const selectedClass = clases[character.class];
+
   const hitDieMax = selectedClass
     ? parseInt(selectedClass.hitDie.replace("d", ""))
     : 0;

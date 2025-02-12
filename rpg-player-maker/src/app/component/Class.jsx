@@ -1,22 +1,25 @@
 import { clases } from "../utils/Classs";
 
 const Class = ({ character, setCharacter }) => {
-  // Esta función selecciona la clase
-  const handleSelectClass = (clase) => {
-    setCharacter({ ...character, clase, subclass: null }); // Reinicia la subclase cuando se selecciona una nueva clase
+  // Selecciona la clase y reinicia la subclase
+  const handleSelectClass = (classKey) => {
+    setCharacter({ ...character, class: classKey, subclass: null });
   };
 
-  // Esta función selecciona la subclase
+  // Selecciona la subclase
   const handleSelectSubclass = (subclassKey) => {
-    const selectedSubclass = selectedClass.subclasses[subclassKey]; // Accede a la subclase usando la clave
-    setCharacter({ ...character, subclass: selectedSubclass.name }); // Almacena el nombre de la subclase seleccionada
+    const selectedSubclass = clases[character.class]?.subclasses[subclassKey];
+    if (selectedSubclass) {
+      setCharacter({ ...character, subclass: selectedSubclass.name });
+    }
   };
 
   // Obtenemos los detalles de la clase seleccionada
-  const selectedClass = clases[character.clase];
+  const selectedClass = clases[character.class];
+
   // Si hay una subclase seleccionada, obtenemos sus detalles
-  const selectedSubclass = character.subclass
-    ? selectedClass?.subclasses[
+  const selectedSubclass = selectedClass?.subclasses
+    ? selectedClass.subclasses[
         Object.keys(selectedClass.subclasses).find(
           (subclassKey) =>
             selectedClass.subclasses[subclassKey].name === character.subclass
@@ -29,9 +32,9 @@ const Class = ({ character, setCharacter }) => {
     if (Array.isArray(value) && value.length > 0) {
       return value.join(", ");
     } else if (typeof value === "string" && value.trim() !== "") {
-      return value; // Si es un string no vacío, lo mostramos tal cual
+      return value;
     }
-    return "No disponible"; // Si no es un array o un string válido
+    return "No disponible";
   };
 
   return (
@@ -49,7 +52,7 @@ const Class = ({ character, setCharacter }) => {
               key={classKey}
               onClick={() => handleSelectClass(classKey)}
               className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-                character.clase === classKey
+                character.class === classKey
                   ? "bg-blue-500 text-[var(--color5)]"
                   : "bg-[var(--color2)]"
               }`}

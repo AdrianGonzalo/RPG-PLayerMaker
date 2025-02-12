@@ -1,6 +1,11 @@
 "use client";
 
+import { razas } from "../utils/Race";
+import { clases } from "../utils/Classs";
+import { Errors } from "../utils/Errors";
+
 import { useState } from "react";
+
 import Name from "./Name";
 import Sex from "./Sex";
 import Race from "./Race";
@@ -11,6 +16,8 @@ import Life from "./Life";
 import Button from "./Button";
 import Heroe from "./Heroe";
 
+import ErrorMessage from "./ErrorMessage";
+
 const Allcreate = () => {
   const [character, setCharacter] = useState({
     name: "",
@@ -20,11 +27,21 @@ const Allcreate = () => {
     class: null,
     background: null,
     attributes: {},
-    life: 0,
   });
+
   const [showSummary, setShowSummary] = useState(false);
+  const [error, setError] = useState("");
 
   const handleCreateHero = () => {
+    console.log("Estado del personaje:", character); // <-- Agregar este log
+    const errorMessage = Errors(character, razas, clases);
+
+    if (errorMessage) {
+      setError(errorMessage);
+      return;
+    }
+
+    setError("");
     setShowSummary(true);
   };
 
@@ -39,11 +56,11 @@ const Allcreate = () => {
           <Background character={character} setCharacter={setCharacter} />
           <Attributes character={character} setCharacter={setCharacter} />
           <Life character={character} setCharacter={setCharacter} />
-
-          <Button onClick={handleCreateHero}>Forja tu Heroe</Button>
+          <Button onClick={handleCreateHero}>Forja tu Héroe</Button>
         </div>
       </div>
       {showSummary && <Heroe character={character} />}
+      {error && <ErrorMessage message={error} onClose={() => setError("")} />}
     </div>
   );
 };
