@@ -19,6 +19,7 @@ import Heroe from "./Heroe";
 import ErrorMessage from "./ErrorMessage";
 
 import RainEffect from "./RainEffects/RainEffect";
+import Chicken from "./Chicken/Chicken";
 
 const Allcreate = () => {
   const [character, setCharacter] = useState({
@@ -36,7 +37,7 @@ const Allcreate = () => {
   const [error, setError] = useState("");
 
   const handleCreateHero = () => {
-    console.log("Estado del personaje:", character); // <-- Agregar este log
+    console.log("Estado del personaje:", character);
     const errorMessage = Errors(character, razas, clases);
 
     if (errorMessage) {
@@ -49,24 +50,27 @@ const Allcreate = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center">
-      <div className="bg-[var(--color5)] rounded-xl w-[1000px] h-auto border-[var(--bordercreate)] border-2 m-20">
-        <div className="flex flex-col items-center m-5 space-y-6">
-          <Name character={character} setCharacter={setCharacter} />
-          <Sex character={character} setCharacter={setCharacter} />
-          <Race character={character} setCharacter={setCharacter} />
-          <Class character={character} setCharacter={setCharacter} />
-          <Background character={character} setCharacter={setCharacter} />
-          <Attributes character={character} setCharacter={setCharacter} />
-          <Life character={character} setCharacter={setCharacter} />
-          <Button onClick={handleCreateHero}>Forja tu Héroe</Button>
+    <>
+      <div className="flex flex-col justify-center items-center">
+        <div className="bg-[var(--color5)] rounded-xl w-[1000px] h-auto border-[var(--bordercreate)] border-2 m-20">
+          <Chicken />
+          <div className="flex flex-col items-center m-5 space-y-6">
+            <Name character={character} setCharacter={setCharacter} />
+            <Sex character={character} setCharacter={setCharacter} />
+            <Race character={character} setCharacter={setCharacter} />
+            <Class character={character} setCharacter={setCharacter} />
+            <Background character={character} setCharacter={setCharacter} />
+            <Attributes character={character} setCharacter={setCharacter} />
+            <Life character={character} setCharacter={setCharacter} />
+            <Button onClick={handleCreateHero}>Forja tu Héroe</Button>
+          </div>
         </div>
-      </div>
-      {showSummary && <Heroe character={character} />}
-      {error && <ErrorMessage message={error} onClose={() => setError("")} />}
+        {showSummary && <Heroe character={character} />}
+        {error && <ErrorMessage message={error} onClose={() => setError("")} />}
 
-      <RainEffect />
-    </div>
+        <RainEffect />
+      </div>
+    </>
   );
 };
 
