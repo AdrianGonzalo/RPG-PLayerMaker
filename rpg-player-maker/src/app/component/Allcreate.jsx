@@ -18,6 +18,8 @@ import Heroe from "./Heroe";
 
 import ErrorMessage from "./ErrorMessage";
 
+import RainEffect from "./RainEffects/RainEffect";
+
 const Allcreate = () => {
   const [character, setCharacter] = useState({
     name: "",
@@ -62,6 +64,8 @@ const Allcreate = () => {
       </div>
       {showSummary && <Heroe character={character} />}
       {error && <ErrorMessage message={error} onClose={() => setError("")} />}
+
+      <RainEffect />
     </div>
   );
 };
