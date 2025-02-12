@@ -125,7 +125,7 @@ const Helpbutton = () => {
                 </div>
                 <div className="flex flex-col justify-end items-center h-full">
                   <Image
-                    src="/ImageSoldiers.png"
+                    src="/Images/ImageSoldiers.png"
                     alt="Imagen de los soldados"
                     width={1100}
                     height={1000}

@@ -89,7 +89,7 @@ const Attributes = ({ character, setCharacter }) => {
                   {roll.length < 4 ? roll[roll.length - 1] || "" : "✓"}
                 </p>
                 <div className="w-[115px] h-[115px] bg-[#6167AA] border-slate-900 border-4 rounded-full absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
-                <img src="/d6.svg" alt="d6 vector" className="mb-10" />
+                <img src="/Images/d6.svg" alt="d6 vector" className="mb-10" />
               </div>
               <p className="text-2xl mb-10">Primera Tirada: {roll[0] || "-"}</p>
               <p className="text-2xl mb-10">Segunda Tirada: {roll[1] || "-"}</p>
