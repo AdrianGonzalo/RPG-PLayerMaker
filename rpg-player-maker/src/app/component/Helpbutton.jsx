@@ -4,8 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 
 const Helpbutton = () => {
-  const [visible, setVisible] = useState(false); // Inicializa el estado como false
-
+  const [visible, setVisible] = useState(false);
   const handlehelpbutton = () => {
     setVisible(!visible);
   };
