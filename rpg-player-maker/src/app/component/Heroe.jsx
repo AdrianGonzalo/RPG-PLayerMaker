@@ -213,7 +213,7 @@ const Heroe = ({ character }) => {
                 <p className="text-2xl mt-4 mb-2 text-[var(--color7)]">
                   • Habilidades:
                 </p>
-                <ul className="flex list-disc list-inside text-2xl justify-center gap-2">
+                <ul className="flex list-disc list-inside text-2xl justify-center gap-2 mb-4">
                   {character.background.features.map((feature, index) => (
                     <li key={index}>
                       {feature}
