@@ -97,7 +97,7 @@ const Heroe = ({ character }) => {
         </div>
 
         <div className="mt-6 p-4 border-4 border-slate-600 w-full mb-4">
-          <div className="mb-2 text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
+          <div className="text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
             Raza: {character.race}
             {character.subrace ? ` [ ${character.subrace} ]` : ""}
             <div
@@ -138,7 +138,7 @@ const Heroe = ({ character }) => {
         <div className=" border-4 border-slate-600 w-full">
           <div className="mt-4 mb-4 text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
             Clase: {character.class}
-            {character.subclass ? ` [${character.subclass}]` : ""}
+            {character.subclass ? ` [ ${character.subclass} ]` : ""}
             <div
               onClick={toggleVisibilityClass}
               style={{ cursor: "pointer", fontSize: "18px" }}
@@ -196,7 +196,7 @@ const Heroe = ({ character }) => {
         </div>
 
         {character.background && (
-          <div className="mt-4 p-4 text-lg border-4 border-slate-600 w-full">
+          <div className="mt-4  text-lg border-4 border-slate-600 w-full">
             <div className="mt-4 mb-4 text-4xl text-[var(--color4)] flex justify-center items-center gap-4 ">
               Trasfondo: {character.background.name}
               <div
@@ -227,7 +227,7 @@ const Heroe = ({ character }) => {
         )}
 
         <div className="mt-4 p-4 text-lg border-4 border-slate-600 w-full">
-          <h2 className="mt-4 mb-4 text-4xl text-[var(--color4)]">
+          <h2 className="mt-3 mb-3 text-4xl text-[var(--color4)]">
             Escribe tu historia
           </h2>
           <textarea
