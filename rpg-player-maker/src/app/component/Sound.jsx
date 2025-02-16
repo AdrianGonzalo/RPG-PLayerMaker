@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
 const Sound = ({ src }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const audioRef = useRef(null);
 
@@ -16,7 +17,15 @@ const Sound = ({ src }) => {
     if (audioRef.current) {
       audioRef.current.volume = 0.02;
     }
-  }, []);
+  }, [currentIndex]);
+
+  const handleEnded = () => {
+    if (currentIndex < sources.length - 1) {
+      setCurrentIndex((prevIndex) => prevIndex + 1);
+    } else {
+      setCurrentIndex(0);
+    }
+  };
 
   return (
     <div
