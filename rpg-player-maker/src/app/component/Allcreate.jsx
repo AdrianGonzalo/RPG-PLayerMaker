@@ -15,6 +15,7 @@ import Attributes from "./Attributes";
 import Life from "./Life";
 import Button from "./Button";
 import Heroe from "./Heroe";
+import History from "./History";
 
 import ErrorMessage from "./ErrorMessage";
 
@@ -62,6 +63,7 @@ const Allcreate = () => {
             <Background character={character} setCharacter={setCharacter} />
             <Attributes character={character} setCharacter={setCharacter} />
             <Life character={character} setCharacter={setCharacter} />
+            <History character={character} setCharacter={setCharacter} />
             <Button onClick={handleCreateHero}>Forja tu Héroe</Button>
           </div>
         </div>

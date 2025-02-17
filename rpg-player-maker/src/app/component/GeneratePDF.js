@@ -4,126 +4,130 @@ export const generatePDF = (character, fileName = "personaje.pdf") => {
   if (!character) return;
 
   const pdf = new jsPDF();
+  const pageHeight = pdf.internal.pageSize.height;
+  let y = 20;
+  const lineHeight = 10;
+  const margin = 10;
+  const rightColumnX = 120;
 
-  // Título
+  const addNewPage = () => {
+    pdf.addPage();
+    y = margin;
+  };
+
+  const checkPageLimit = () => {
+    if (y + lineHeight >= pageHeight - margin) {
+      addNewPage();
+    }
+  };
+
+  // Título principal
   pdf.setFontSize(16);
-  pdf.text(`Ficha de Personaje`, 105, 20, { align: "center" });
+  pdf.text(`Ficha de Personaje`, 105, y, { align: "center" });
+  y += 20;
 
   pdf.setFontSize(12);
-  let y = 40;
-  const lineHeight = 10;
 
-  // Información básica
-  pdf.text(`Nombre: ${character.name}`, 10, y);
-  pdf.text(`Sexo: ${character.sex}`, 10, (y += lineHeight));
+  // Nombre y sexo
+  pdf.text(`Nombre: ${character.name || "No especificado"}`, margin, y);
+  pdf.text("Atributos:", rightColumnX, y);
+  y += lineHeight;
+  pdf.text(`Sexo: ${character.sex || "No especificado"}`, margin, y);
 
-  // Raza y subraza
-  pdf.text("Raza:", 10, (y += lineHeight));
-  pdf.text(`  ${character.race}`, 20, (y += lineHeight));
-  if (character.subrace) {
-    pdf.text(`  Subraza: ${character.subrace}`, 20, (y += lineHeight));
-  }
-
-  // Bonificadores de raza y subraza
-  if (character.raceBonuses && Object.keys(character.raceBonuses).length > 0) {
-    pdf.text("Bonificadores de Raza:", 10, (y += lineHeight));
-    Object.entries(character.raceBonuses).forEach(([key, value]) => {
-      pdf.text(`  ${key}: +${value}`, 20, (y += lineHeight));
-    });
-  }
-
-  if (
-    character.subraceBonuses &&
-    Object.keys(character.subraceBonuses).length > 0
-  ) {
-    pdf.text("Bonificadores de Subraza:", 10, (y += lineHeight));
-    Object.entries(character.subraceBonuses).forEach(([key, value]) => {
-      pdf.text(`  ${key}: +${value}`, 20, (y += lineHeight));
-    });
-  }
-
-  // Clase y subclase
-  pdf.text("Clase:", 10, (y += lineHeight + 5));
-  pdf.text(`  ${character.class}`, 20, (y += lineHeight));
-  if (character.subclass) {
-    pdf.text(`  Subclase: ${character.subclass}`, 20, (y += lineHeight));
-  }
-
-  // Bonificadores de clase y subclase
-  if (character.selectedClass) {
-    pdf.text("Bonificadores de Clase:", 10, (y += lineHeight));
-
-    if (character.selectedClass.hitDie) {
-      pdf.text(
-        `  Dado de golpe: ${character.selectedClass.hitDie}`,
-        20,
-        (y += lineHeight)
-      );
-    }
-    if (character.selectedClass.primaryAbility) {
-      pdf.text(
-        `  Habilidad primaria: ${character.selectedClass.primaryAbility}`,
-        20,
-        (y += lineHeight)
-      );
-    }
-    if (character.selectedClass.weapons) {
-      pdf.text(
-        `  Armas: ${character.selectedClass.weapons}`,
-        20,
-        (y += lineHeight)
-      );
-    }
-    if (character.selectedClass.savingThrows?.length > 0) {
-      pdf.text(
-        `  Tiradas de salvación: ${character.selectedClass.savingThrows.join(
-          ", "
-        )}`,
-        20,
-        (y += lineHeight)
-      );
-    }
-    if (character.selectedClass.features?.length > 0) {
-      pdf.text(
-        `  Rasgos: ${character.selectedClass.features.join(", ")}`,
-        20,
-        (y += lineHeight)
-      );
-    }
-  }
-
-  if (
-    character.selectedSubclass &&
-    character.selectedSubclass.features?.length > 0
-  ) {
-    pdf.text("Bonificadores de Subclase:", 10, (y += lineHeight));
-    pdf.text(
-      `  Rasgos: ${character.selectedSubclass.features.join(", ")}`,
-      20,
-      (y += lineHeight)
-    );
-  }
-
-  // Atributos (columna derecha)
-  pdf.text("Atributos:", 120, 40);
-  let yRight = 50;
-  const attributes = character.attributes || {};
-  Object.entries(attributes).forEach(([attr, value]) => {
-    pdf.text(`${attr}: ${value}`, 120, yRight);
+  // Atributos alineados a la derecha con mismo margen superior que el nombre
+  let yRight = y;
+  Object.entries(character.attributes || {}).forEach(([attr, value]) => {
+    pdf.text(`${attr}: ${value}`, rightColumnX, yRight);
     yRight += lineHeight;
+    checkPageLimit();
   });
 
+  y += lineHeight;
+
+  // Raza y subraza
+  pdf.text(`Raza: ${character.race || "No especificada"}`, margin, y);
+  y += lineHeight;
+  pdf.text(`Subraza: ${character.subrace || "Ninguna"}`, margin, y);
+  y += lineHeight;
+
+  // Clase y subclase debajo de subraza
+  pdf.text(`Clase: ${character.class || "No especificada"}`, margin, y);
+  y += lineHeight;
+  pdf.text(`Subclase: ${character.subclass || "Ninguna"}`, margin, y);
+  y += lineHeight;
+
   // Trasfondo
-  let yBackground = Math.max(y, yRight) + 20;
-  if (character.background) {
-    pdf.text(`Trasfondo: ${character.background.name}`, 10, yBackground);
-    pdf.text(`Historia:`, 10, yBackground + 10);
-    pdf.text(
-      character.background.description || "Sin descripción",
-      15,
-      yBackground + 20,
-      { maxWidth: 180 }
+  if (character.background?.name) {
+    pdf.text(`Trasfondo: ${character.background.name}`, margin, y);
+    y += lineHeight;
+  }
+
+  y += 5;
+  checkPageLimit();
+
+  // Bonificadores en dos columnas
+  pdf.text("Bonificadores de Raza y Subraza", margin, y);
+  pdf.text("Bonificadores de Clase y Subclase", rightColumnX, y);
+  y += lineHeight;
+  pdf.text("Bonificador de Raza:", margin, y);
+  pdf.text("Bonificador de Clase:", rightColumnX, y);
+  y += lineHeight;
+
+  const raceBonuses = Object.entries(character.raceBonuses || {});
+  const subraceBonuses = Object.entries(character.subraceBonuses || {});
+  const classBonuses = Object.entries(character.classBonuses || {});
+
+  let yLeft = y;
+  let yRightBonuses = y;
+
+  // Bonificaciones de raza
+  raceBonuses.forEach(([attr, value]) => {
+    pdf.text(`${attr}: +${value}`, margin + 10, yLeft);
+    yLeft += lineHeight;
+    checkPageLimit();
+  });
+
+  // Bonificaciones de subraza con título
+  if (subraceBonuses.length > 0) {
+    pdf.text("Bonificadores de Subraza:", margin, yLeft);
+    yLeft += lineHeight;
+    subraceBonuses.forEach(([attr, value]) => {
+      pdf.text(`${attr}: +${value}`, margin + 10, yLeft);
+      yLeft += lineHeight;
+      checkPageLimit();
+    });
+  }
+
+  // Bonificaciones de clase
+  classBonuses.forEach(([attr, value]) => {
+    pdf.text(`${attr}: +${value}`, rightColumnX + 10, yRightBonuses);
+    yRightBonuses += lineHeight;
+    checkPageLimit();
+  });
+
+  y = Math.max(yLeft, yRightBonuses) + 10;
+  checkPageLimit();
+
+  // Historia del trasfondo
+  if (character.background?.description) {
+    pdf.text(`Historia del Trasfondo:`, margin, y);
+    const backgroundLines = pdf.splitTextToSize(
+      character.background.description,
+      180
     );
+    pdf.text(backgroundLines, margin + 10, (y += lineHeight));
+    y += backgroundLines.length * lineHeight;
+    checkPageLimit();
+  }
+
+  // Historia del personaje
+  if (character.history) {
+    pdf.text("Historia del Personaje:", margin, y);
+    const historyLines = pdf.splitTextToSize(character.history, 180);
+    historyLines.forEach((line) => {
+      pdf.text(line, margin + 10, (y += lineHeight));
+      checkPageLimit();
+    });
   }
 
   pdf.save(fileName);

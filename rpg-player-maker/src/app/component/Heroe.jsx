@@ -29,6 +29,12 @@ const Heroe = ({ character }) => {
   const selectedRace = razas[character.race] || {};
   const selectedSubrace = selectedRace.subrazas?.[character.subrace] || {};
 
+  const primaryAbility = selectedClass.primaryAbility;
+  const weapons = selectedClass.weapons;
+  const savingThrows = selectedClass.savingThrows?.join(", ");
+  const classFeatures = selectedClass.features?.join(", ");
+  const subclassFeatures = selectedSubclass.features?.join(", ");
+
   const hitDieMax = selectedClass.hitDie
     ? parseInt(selectedClass.hitDie.replace("d", ""))
     : 0;
@@ -222,10 +228,9 @@ const Heroe = ({ character }) => {
                 </p>
                 <ul className="flex list-disc list-inside text-2xl justify-center gap-2 mb-4">
                   {character.background.features.map((feature, index) => (
-                    <li key={index}>
+                    <ul className="ml-4 mr-4" key={index}>
                       {feature}
-                      {index < character.background.features.length - 1 && ","}
-                    </li>
+                    </ul>
                   ))}
                 </ul>
               </>
@@ -233,23 +238,29 @@ const Heroe = ({ character }) => {
           </div>
         )}
 
-        <div className="mt-4 p-4 text-lg border-4 border-slate-600 w-full">
-          <h2 className="mt-3 mb-3 text-4xl text-[var(--color4)]">
-            Escribe tu historia
-          </h2>
-          <textarea
-            className="mt-4 w-full rounded-xl bg-[var(--color6)] p-4 text-left placeholder:text-center text-2xl"
-            placeholder="Empieza a dar aquí tus primeros pasos..."
-          ></textarea>
-        </div>
+        {character.history && (
+          <div className="mt-6 p-4 border-4 border-slate-600 w-full">
+            <p className="text-4xl text-[var(--color4)] text-center mb-4">
+              Historia del Personaje
+            </p>
+            <p className="text-2xl text-justify">{character.history}</p>
+          </div>
+        )}
 
         <div>
           <button
             onClick={() => {
-              console.log("Character data:", character);
-              generatePDF(character);
+              generatePDF({
+                ...character,
+                classHitDie: hitDieMax,
+                classPrimaryAbility: primaryAbility,
+                classWeapons: weapons,
+                classSavingThrows: savingThrows,
+                classFeatures: classFeatures,
+                subclassFeatures: subclassFeatures,
+              });
             }}
-            className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
+            className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
           >
             Descargar Ficha en PDF
           </button>

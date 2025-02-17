@@ -3,12 +3,27 @@ import { clases } from "../utils/Classs";
 const Class = ({ character, setCharacter }) => {
   // Selecciona la clase y reinicia la subclase
   const handleSelectClass = (classKey) => {
-    setCharacter({ ...character, class: classKey, subclass: null });
+    const selectedClass = clases[classKey];
+
+    setCharacter({
+      ...character,
+      class: classKey,
+      subclass: null, // Reiniciar subclase
+      classFeatures: selectedClass ? selectedClass.features : [], // Guardar características de la clase
+      subclassFeatures: [], // Resetear características de subclase
+    });
   };
 
   // Selecciona la subclase
   const handleSelectSubclass = (subclassKey) => {
-    setCharacter({ ...character, subclass: subclassKey });
+    const selectedClass = clases[character.class];
+    const selectedSubclass = selectedClass?.subclasses[subclassKey];
+
+    setCharacter({
+      ...character,
+      subclass: subclassKey,
+      subclassFeatures: selectedSubclass ? selectedSubclass.features : [], // Guardar características de la subclase
+    });
   };
 
   // Obtenemos los detalles de la clase seleccionada
