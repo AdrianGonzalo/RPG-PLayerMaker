@@ -17,7 +17,7 @@ const Window = ({ onAccept }) => {
       {visible && (
         <div className="flex justify-center items-center bg-[var(--background)]">
           <div className="bg-[var(--color2)] m-20 rounded-xl w-[1000px] h-auto">
-            <div className="flex flex-col items-center m-5 p-2">
+            <div className="flex flex-col items-center m-10 p-4">
               <p className="text-5xl flex justify-center mt-4">
                 Bienvenidos aventureros
               </p>

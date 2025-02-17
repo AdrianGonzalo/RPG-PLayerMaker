@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 import { clases } from "../utils/Classs";
 import { razas } from "../utils/Race";
+
+import { generatePDF } from "./GeneratePDF";
 
 const Heroe = ({ character }) => {
   const [isOpenRace, setIsOpenRace] = useState(false);
@@ -19,6 +21,8 @@ const Heroe = ({ character }) => {
   const toggleVisibilityBackground = () => {
     setIsOpenBackground(!isOpenBackground);
   };
+
+  const characterRef = useRef(null);
 
   const selectedClass = clases[character.class] || {};
   const selectedSubclass = selectedClass.subclasses?.[character.subclass] || {};
@@ -49,7 +53,10 @@ const Heroe = ({ character }) => {
 
   return (
     <div className="flex justify-center items-center flex-col text-2xl">
-      <div className="bg-[var(--color5)] rounded-xl w-[1000px] h-auto border-[var(--bordercreate)] border-2 m-20 text-center p-6">
+      <div
+        ref={characterRef}
+        className="bg-[var(--color5)] rounded-xl w-[1000px] h-auto border-[var(--bordercreate)] border-2 m-20 text-center p-6"
+      >
         <p className="text-[70px] mb-10 mt-6 text-[var(--color1)]">
           {character.name}
         </p>
@@ -234,6 +241,18 @@ const Heroe = ({ character }) => {
             className="mt-4 w-full rounded-xl bg-[var(--color6)] p-4 text-left placeholder:text-center text-2xl"
             placeholder="Empieza a dar aquí tus primeros pasos..."
           ></textarea>
+        </div>
+
+        <div>
+          <button
+            onClick={() => {
+              console.log("Character data:", character);
+              generatePDF(character);
+            }}
+            className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
+          >
+            Descargar Ficha en PDF
+          </button>
         </div>
       </div>
     </div>
