@@ -52,6 +52,23 @@ const Heroe = ({ character }) => {
     Carisma: "carisma",
   };
 
+  const attributesWithBonuses = {};
+  Object.keys(attributeMap).forEach((attr) => {
+    const baseValue = character.attributes?.[attr] || 10;
+    const mappedKey = attributeMap[attr];
+    const totalBonus =
+      (raceBonuses[mappedKey] || 0) +
+      (subraceBonuses[mappedKey] || 0) +
+      (classBonuses[mappedKey] || 0) +
+      (subclassBonuses[mappedKey] || 0);
+
+    attributesWithBonuses[attr] = {
+      base: baseValue,
+      bonus: totalBonus,
+      total: baseValue + totalBonus,
+    };
+  });
+
   return (
     <div className="flex justify-center items-center flex-col text-2xl">
       <div
@@ -247,16 +264,17 @@ const Heroe = ({ character }) => {
             document={
               <CharacterPDF
                 character={{
-                  ...character, // Incluye los datos base del personaje
-                  raceBonuses: raceBonuses, // Bonificadores de raza
-                  life: totalHP, // Vida
-                  subraceBonuses: subraceBonuses, // Bonificadores de subraza
-                  classHitDie: selectedClass?.hitDie, // Dado de golpe de la clase
-                  classPrimaryAbility: selectedClass?.primaryAbility, // Habilidad principal
-                  classWeapons: selectedClass?.weapons, // Armas
-                  classSavingThrows: selectedClass?.savingThrows?.join(", "), // Tiros de salvación
-                  classFeatures: selectedClass?.features?.join(", "), // Rasgos de clase
-                  selectedSubclass: selectedSubclass, // Incluye la subclase completa
+                  ...character,
+                  raceBonuses,
+                  subraceBonuses,
+                  life: totalHP,
+                  attributesWithBonuses, // Atributos con bonificadores
+                  classHitDie: selectedClass?.hitDie,
+                  classPrimaryAbility: selectedClass?.primaryAbility,
+                  classWeapons: selectedClass?.weapons,
+                  classSavingThrows: selectedClass?.savingThrows?.join(", "),
+                  classFeatures: selectedClass?.features?.join(", "),
+                  selectedSubclass,
                 }}
               />
             }

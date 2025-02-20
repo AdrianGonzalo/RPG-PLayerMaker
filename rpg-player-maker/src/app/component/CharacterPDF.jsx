@@ -82,12 +82,20 @@ const styles = StyleSheet.create({
     width: "65%",
     lineHeight: 2,
   },
+  footer: {
+    marginTop: "auto",
+    textAlign: "center",
+    fontSize: 10,
+    borderTopWidth: 1,
+    borderColor: "#000",
+    paddingTop: 10,
+  },
 });
 
 const CharacterPDF = ({ character }) => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <Image src="/Images/watermark.png" style={styles.image} />
+      {/* <Image src="/Images/watermark.png" style={styles.image} /> */}
 
       <Text style={styles.title}>Ficha de Personaje</Text>
 
@@ -108,6 +116,9 @@ const CharacterPDF = ({ character }) => (
           <Text style={styles.text}>
             Clase: {character.class || "No especificada"}
           </Text>
+          <Text style={styles.text}>
+            Clase: {character.subclass || "No especificada"}
+          </Text>
           <Text style={styles.text}>Vida: {character.life || "Ninguna"}</Text>
           <Text style={styles.text}>
             Velocidad: {character.speed || "Ninguna"}
@@ -123,12 +134,17 @@ const CharacterPDF = ({ character }) => (
 
         <View style={styles.column}>
           <Text style={styles.subtitle}>Atributos</Text>
-          {Object.entries(character.attributes || {}).map(([attr, value]) => (
-            <View key={attr} style={styles.attributeRow}>
-              <Text style={styles.attributeValue}>{value}</Text>
-              <Text style={styles.attributeName}>{attr}</Text>
-            </View>
-          ))}
+          {Object.entries(character.attributesWithBonuses || {}).map(
+            ([attr, { base, bonus, total }]) => (
+              <View key={attr} style={styles.attributeRow}>
+                <Text style={styles.attributeValue}>
+                  {total} ({base}
+                  {bonus !== 0 && ` +${bonus}`})
+                </Text>
+                <Text style={styles.attributeName}>{attr}</Text>
+              </View>
+            )
+          )}
         </View>
       </View>
 
@@ -221,6 +237,11 @@ const CharacterPDF = ({ character }) => (
           <Text style={styles.text}>{character.history}</Text>
         </>
       )}
+
+      <View style={styles.footer}>
+        <Text>From Create RPG Player</Text>
+        <Text>By AdrianDev</Text>
+      </View>
     </Page>
   </Document>
 );
