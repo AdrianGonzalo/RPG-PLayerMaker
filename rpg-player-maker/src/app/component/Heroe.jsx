@@ -3,7 +3,8 @@ import { useState, useRef } from "react";
 import { clases } from "../utils/Classs";
 import { razas } from "../utils/Race";
 
-import { generatePDF } from "./GeneratePDF";
+import { PDFDownloadLink } from "@react-pdf/renderer";
+import CharacterPDF from "./CharacterPDF";
 
 const Heroe = ({ character }) => {
   const [isOpenRace, setIsOpenRace] = useState(false);
@@ -28,12 +29,6 @@ const Heroe = ({ character }) => {
   const selectedSubclass = selectedClass.subclasses?.[character.subclass] || {};
   const selectedRace = razas[character.race] || {};
   const selectedSubrace = selectedRace.subrazas?.[character.subrace] || {};
-
-  const primaryAbility = selectedClass.primaryAbility;
-  const weapons = selectedClass.weapons;
-  const savingThrows = selectedClass.savingThrows?.join(", ");
-  const classFeatures = selectedClass.features?.join(", ");
-  const subclassFeatures = selectedSubclass.features?.join(", ");
 
   const hitDieMax = selectedClass.hitDie
     ? parseInt(selectedClass.hitDie.replace("d", ""))
@@ -247,25 +242,32 @@ const Heroe = ({ character }) => {
           </div>
         )}
 
-        <div>
-          <button
-            onClick={() => {
-              generatePDF({
-                ...character,
-                classHitDie: hitDieMax,
-                classPrimaryAbility: primaryAbility,
-                classWeapons: weapons,
-                classSavingThrows: savingThrows,
-                classFeatures: classFeatures,
-                subclassFeatures: subclassFeatures,
-                classBonuses: classBonuses,
-                subclassBonuses: subclassBonuses,
-              });
-            }}
-            className="mt-10 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition"
+        <div className="mt-10">
+          <PDFDownloadLink
+            document={
+              <CharacterPDF
+                character={{
+                  ...character, // Incluye los datos base del personaje
+                  raceBonuses: raceBonuses, // Bonificadores de raza
+                  life: totalHP, // Vida
+                  subraceBonuses: subraceBonuses, // Bonificadores de subraza
+                  classHitDie: selectedClass?.hitDie, // Dado de golpe de la clase
+                  classPrimaryAbility: selectedClass?.primaryAbility, // Habilidad principal
+                  classWeapons: selectedClass?.weapons, // Armas
+                  classSavingThrows: selectedClass?.savingThrows?.join(", "), // Tiros de salvación
+                  classFeatures: selectedClass?.features?.join(", "), // Rasgos de clase
+                  selectedSubclass: selectedSubclass, // Incluye la subclase completa
+                }}
+              />
+            }
+            fileName="Ficha de Personaje.pdf"
           >
-            Descargar Ficha en PDF
-          </button>
+            {({ loading }) => (
+              <button className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg hover:bg-blue-700 transition">
+                {loading ? "Generando PDF..." : "Descargar Ficha en PDF"}
+              </button>
+            )}
+          </PDFDownloadLink>
         </div>
       </div>
     </div>
