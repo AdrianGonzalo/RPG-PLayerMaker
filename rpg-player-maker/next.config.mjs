@@ -5,6 +5,9 @@ const nextConfig = {
   output: "export",
   basePath: isProd ? "/RPG-PLayerMaker" : "",
   assetPrefix: isProd ? "/RPG-PLayerMaker/" : "",
+  images: {
+    unoptimized: true,
+  },
 };
 
 export default nextConfig;
