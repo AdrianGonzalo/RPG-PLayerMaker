@@ -1,10 +1,10 @@
 import { useState, useRef } from "react";
 
-import { clases } from "../utils/Classs";
-import { razas } from "../utils/Race";
+import { clases } from "../../../utils/Classs";
+import { razas } from "../../../utils/Race";
 
 import { PDFDownloadLink } from "@react-pdf/renderer";
-import CharacterPDF from "./CharacterPDF";
+import CharacterPDF from "../../pdf/CharacterPDF";
 
 const Heroe = ({ character }) => {
   const [isOpenRace, setIsOpenRace] = useState(false);
@@ -293,3 +293,22 @@ const Heroe = ({ character }) => {
 };
 
 export default Heroe;
+
+// Heroe.jsx
+// import { useState, useRef } from "react";
+// import { clases } from "../../../utils/Classs";
+// import { razas } from "../../../utils/Race";
+// import HeroeAttributes from "./HeroeAttributes";
+// import HeroeImage from "./HeroeImage";
+// import HeroeStats from "./HeroeStats";
+// import HeroeRaceDetails from "./HeroeRaceDetails";
+// import HeroeClassDetails from "./HeroeClassDetails";
+// import HeroeBackground from "./HeroeBackground";
+// import HeroeHistory from "./HeroeHistory";
+// import HeroePDFDownload from "./HeroePDFDownload";
+
+// const Heroe = () => {
+//   return <div></div>;
+// };
+
+// export default Heroe;

@@ -1,4 +1,4 @@
-import { razas } from "../utils/Race";
+import { razas } from "../../utils/Race";
 
 const Race = ({ character, setCharacter }) => {
   const handleSelectRace = (race) => {

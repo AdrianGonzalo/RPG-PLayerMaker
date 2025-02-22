@@ -1,4 +1,4 @@
-import { clases } from "../utils/Classs";
+import { clases } from "../../utils/Classs";
 
 const Life = ({ character }) => {
   const selectedClass = clases[character.class];

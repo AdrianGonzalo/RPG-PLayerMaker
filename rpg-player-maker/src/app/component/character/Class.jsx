@@ -1,4 +1,4 @@
-import { clases } from "../utils/Classs";
+import { clases } from "../../utils/Classs";
 
 const Class = ({ character, setCharacter }) => {
   // Selecciona la clase y reinicia la subclase

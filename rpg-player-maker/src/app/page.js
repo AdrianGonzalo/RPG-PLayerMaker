@@ -2,12 +2,12 @@
 
 import { useState } from "react";
 
-import Window from "./component/Flashwindow";
-import Header from "./component/Header";
-import Footer from "./component/Footer";
-import Allcreate from "./component/Allcreate";
-import Helpbutton from "./component/Helpbutton";
-import Sound from "./component/Sound";
+import Window from "./component/common/Flashwindow";
+import Header from "./component/common/Header";
+import Footer from "./component/common/Footer";
+import Allcreate from "./component/character/Allcreate";
+import Helpbutton from "./component/common/Helpbutton";
+import Sound from "./component/common/Sound";
 
 export default function Home() {
   const [windowAccepted, setWindowAcecepted] = useState(false);

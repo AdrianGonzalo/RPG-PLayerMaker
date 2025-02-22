@@ -1,8 +1,8 @@
 "use client";
 
-import { razas } from "../utils/Race";
-import { clases } from "../utils/Classs";
-import { Errors } from "../utils/Errors";
+import { razas } from "../../utils/Race";
+import { clases } from "../../utils/Classs";
+import { Errors } from "../../utils/Errors";
 
 import { useState } from "react";
 
@@ -13,14 +13,15 @@ import Class from "./Class";
 import Background from "./Background";
 import Attributes from "./Attributes";
 import Life from "./Life";
-import Button from "./Button";
-import Heroe from "./Heroe";
+
+import Button from "../common/Button";
+import Heroe from "./heroe/Heroe";
 import History from "./History";
 
-import ErrorMessage from "./ErrorMessage";
+import ErrorMessage from "../common/ErrorMessage";
 
-import RainEffect from "./RainEffects/RainEffect";
-import Chicken from "./Chicken/Chicken";
+import RainEffect from "../RainEffects/RainEffect";
+import Chicken from "../Chicken/Chicken";
 
 const Allcreate = () => {
   const [character, setCharacter] = useState({

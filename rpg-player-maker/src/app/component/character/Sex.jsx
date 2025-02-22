@@ -10,24 +10,24 @@ const Sex = ({ character, setCharacter }) => {
       </p>
       <div className="flex gap-2 mb-10">
         <button
-          onClick={() => handleSelectSex("HOMBRE")}
+          onClick={() => handleSelectSex("Hombre")}
           className={`w-[200px] text-xl p-1 rounded-lg ${
-            character.sex === "HOMBRE"
+            character.sex === "Hombre"
               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
               : "bg-[var(--color2)]" // no está seleccionado
           }`}
         >
-          HOMBRE
+          Hombre
         </button>
         <button
-          onClick={() => handleSelectSex("MUJER")}
+          onClick={() => handleSelectSex("Mujer")}
           className={`w-[200px] bg-[var(--color2)] text-xl p-1 rounded-lg ${
-            character.sex === "MUJER"
+            character.sex === "Mujer"
               ? "bg-blue-500 text-[var(--color5)]" // está seleccionado
               : "bg-[var(--color2)]" // no está seleccionado
           }`}
         >
-          MUJER
+          Mujer
         </button>
       </div>
     </div>

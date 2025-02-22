@@ -1,4 +1,4 @@
-import { background as backgrounds } from "../utils/Background";
+import { background as backgrounds } from "../../utils/Background";
 
 const Background = ({ character, setCharacter }) => {
   const handleBackground = (backgroundKey) => {
