@@ -12,11 +12,10 @@ const HeroeClassDetails = ({ character, onBonusesUpdateClass }) => {
     setIsOpenClass(!isOpenClass);
   };
 
-  useEffect(() => {
-    const selectedClass = clases[character.class] || {};
-    const selectedSubclass =
-      selectedClass.subclasses?.[character.subclass] || {};
+  const selectedClass = clases[character.class] || {};
+  const selectedSubclass = selectedClass.subclasses?.[character.subclass] || {};
 
+  useEffect(() => {
     const classBonus = {
       hitDie: selectedClass.hitDie,
       primaryAbility: selectedClass.primaryAbility,

@@ -85,46 +85,44 @@
 //         <p className="mb-6 text-3xl">Sexo: {character.sex}</p>
 
 //         {/* Contenedor flex para centrar la imagen */}
-//         <div className="flex justify-center items-center gap-10 mb-6">
-//           {/* Columna Izquierda (Atributos) */}
-//           <div className="flex flex-col justify-center text-right w-[150px]">
-//             {Object.keys(attributeMap).map((attr) => {
-//               const baseValue = character.attributes?.[attr] || 10;
-//               const mappedKey = attributeMap[attr];
-//               const totalBonus =
-//                 (raceBonuses[mappedKey] || 0) +
-//                 (subraceBonuses[mappedKey] || 0) +
-//                 (classBonuses[mappedKey] || 0) +
-//                 (subclassBonuses[mappedKey] || 0);
-//               return (
-//                 <p key={attr}>
-//                   {attr} {baseValue}
-//                   {totalBonus > 0 && (
-//                     <span className="text-green-500"> +{totalBonus}</span>
-//                   )}
-//                 </p>
-//               );
-//             })}
-//           </div>
+// <div className="flex justify-center items-center gap-10 mb-6">
+//   {/* Columna Izquierda (Atributos) */}
+//   <div className="flex flex-col justify-center text-right w-[150px]">
+//     {Object.keys(attributeMap).map((attr) => {
+//       const baseValue = character.attributes?.[attr] || 10;
+//       const mappedKey = attributeMap[attr];
+//       const totalBonus =
+//         (raceBonuses[mappedKey] || 0) +
+//         (subraceBonuses[mappedKey] || 0) +
+//         (classBonuses[mappedKey] || 0) +
+//         (subclassBonuses[mappedKey] || 0);
+//       return (
+//         <p key={attr}>
+//           {attr} {baseValue}
+//           {totalBonus > 0 && (
+//             <span className="text-green-500"> +{totalBonus}</span>
+//           )}
+//         </p>
+//       );
+//     })}
+//   </div>
 
-//           {/* Imagen en el centro
-//           <div className="flex justify-center items-center">
-//             <div className="bg-black w-[200px] h-[200px] flex-shrink-0 flex items-center justify-center text-white text-lg font-bold">
-//               Imagen
-//             </div>
-//           </div> */}
+//   {/* Imagen en el centro
+//   <div className="flex justify-center items-center">
+//     <div className="bg-black w-[200px] h-[200px] flex-shrink-0 flex items-center justify-center text-white text-lg font-bold">
+//       Imagen
+//     </div>
+//   </div> */}
 
-//           <HeroeImage character={character} />
-
-//           {/* Columna Derecha (Estadísticas) */}
-//           <div className="flex flex-col justify-center w-[150px] text-center">
-//             <p>{totalHP} Vida</p>
-//             <p>{character.speed} Velocidad</p>
-//             <p className="whitespace-nowrap">
-//               {character.darkVision} Visión en la oscuridad
-//             </p>
-//           </div>
-//         </div>
+//   {/* Columna Derecha (Estadísticas) */}
+//   <div className="flex flex-col justify-center w-[150px] text-center">
+//     <p>{totalHP} Vida</p>
+//     <p>{character.speed} Velocidad</p>
+//     <p className="whitespace-nowrap">
+//       {character.darkVision} Visión en la oscuridad
+//     </p>
+//   </div>
+// </div>
 
 //         {/* <div className="mt-6 p-4 border-4 border-slate-600 w-full mb-4">
 //           <div className="text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
@@ -304,32 +302,74 @@
 
 // export default Heroe;
 
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
+import HeroeNameSex from "./HeroeNameSex";
+import HeroeStats from "./HeroeStats";
 import HeroeRaceDetails from "./HeroeRaceDetails";
 import HeroeClassDetails from "./HeroeClassDetails";
+import HeroeBackground from "./HeroeBackground";
+import HeroeHistory from "./HeroeHistory";
 
 const Heroe = ({ character }) => {
+  //Code the Name and Sex
+  const [name, setName] = useState({});
+  const [sex, setSex] = useState({});
+
+  const handleNameSexUpdate = useCallback((nameData, sexData) => {
+    setName(nameData);
+    setSex(sexData);
+  });
+
+  //Code Stats
+
   //Code the Race
   const [raceBonuses, setRaceBonuses] = useState({});
   const [subrace, setSubrazeBonuses] = useState({});
 
-  const handleRaceBonusesUpdate = (race, subrace) => {
-    setRaceBonuses(race);
-    setSubrazeBonuses(subrace);
-  };
+  const handleRaceBonusesUpdate = useCallback((race, subrace) => {
+    setRaceBonuses(race?.bonificadores || {});
+    setSubrazeBonuses(subrace?.bonificadores || {});
+  }, []);
 
   //Code the Class
   const [classBonuses, setClassBonuses] = useState({});
   const [subclassBonuses, setSubclasBonuses] = useState({});
 
-  const handleClassBonusesUpdate = (classs, subclass) => {
+  const handleClassBonusesUpdate = useCallback((classs, subclass) => {
     setClassBonuses(classs);
     setSubclasBonuses(subclass);
-  };
+  }, []);
+
+  //Code the Background
+  const [background, setBackground] = useState({});
+
+  const handleBackgroundUpdate = useCallback((backgroundData) => {
+    setBackground(backgroundData);
+  }, []);
+
+  //Code the History
+  const [history, setHistory] = useState({});
+
+  const handleHistoryUpdate = useCallback((historyData) => {
+    setHistory(historyData);
+  });
 
   return (
     <div className="flex justify-center items-center flex-col text-2xl">
+      <HeroeNameSex
+        character={character}
+        onNameSexUpdate={handleNameSexUpdate}
+      />
+
+      <HeroeStats
+        character={character}
+        selectedClass={classBonuses}
+        selectedRace={raceBonuses}
+        selectedSubrace={subrace}
+        selectedSubclass={subclassBonuses}
+      />
+
       <HeroeRaceDetails
         character={character}
         onBonusesUpdateRace={handleRaceBonusesUpdate}
@@ -338,6 +378,16 @@ const Heroe = ({ character }) => {
       <HeroeClassDetails
         character={character}
         onBonusesUpdateClass={handleClassBonusesUpdate}
+      />
+
+      <HeroeBackground
+        character={character}
+        onBonusesBackground={handleBackgroundUpdate}
+      />
+
+      <HeroeHistory
+        character={character}
+        onBonusesHistory={handleHistoryUpdate}
       />
     </div>
   );
