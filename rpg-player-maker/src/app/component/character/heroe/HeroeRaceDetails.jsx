@@ -27,7 +27,7 @@ const HeroeRaceDetails = ({ character, onBonusesUpdateRace }) => {
 
   return (
     <div>
-      <div className="mt-6 p-4 border-4 border-slate-600 w-full mb-4">
+      <div className="mt-6 p-4 border-4 border-slate-600 mb-4 w-[1000px] text-center">
         <div className="text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
           Raza: {character.race}
           {character.subrace ? ` [ ${character.subrace} ]` : ""}

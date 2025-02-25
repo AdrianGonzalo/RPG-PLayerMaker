@@ -19,10 +19,9 @@ const Helpbutton = () => {
                 ¿Tienes dudas sobre como crear tu personaje?
               </p>
               <p className="text-xl">
-                No te preocupes, nuestros escuderos de confianza
-                <span className="text-[var(--color1)]"> Borgroth</span> y
-                <span className="text-[var(--color1)]"> Madness </span>
-                te explicaran todo lo que necesites saber.
+                No te preocupes, nuestro pollo mágico llamado
+                <span className="text-[var(--color1)]"> Pollete </span>
+                te explicara todo lo que necesitas saber.
               </p>
               <div>
                 <p className="text-2xl mb-2 text-[var(--color4)]">
@@ -124,7 +123,7 @@ const Helpbutton = () => {
                 </div>
                 <div className="flex flex-col justify-end items-center h-full">
                   <Image
-                    src="/Images/ImageSoldiers.png"
+                    src="/Images/chicken2.png"
                     alt="Imagen de los soldados"
                     width={1100}
                     height={1000}

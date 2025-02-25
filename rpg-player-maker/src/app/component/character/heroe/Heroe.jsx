@@ -356,7 +356,7 @@ const Heroe = ({ character }) => {
   });
 
   return (
-    <div className="flex justify-center items-center flex-col text-2xl">
+    <div className="flex justify-center items-center flex-col text-2xl border-2 border-t-lime-50 border-solid mb-6 rounded-lg">
       <HeroeNameSex
         character={character}
         onNameSexUpdate={handleNameSexUpdate}

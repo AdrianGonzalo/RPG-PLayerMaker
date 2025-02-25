@@ -39,7 +39,7 @@ const HeroeClassDetails = ({ character, onBonusesUpdateClass }) => {
 
   return (
     <div>
-      <div className=" border-4 border-slate-600 w-full">
+      <div className=" border-4 border-slate-600 w-[1000px] text-center">
         <div className="mt-4 mb-4 text-4xl text-[var(--color4)] flex justify-center items-center gap-4">
           Clase: {character.class}
           {character.subclass ? ` [ ${character.subclass} ]` : ""}
