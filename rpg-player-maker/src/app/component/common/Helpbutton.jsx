@@ -13,15 +13,24 @@ const Helpbutton = () => {
     <>
       {visible && (
         <div className="fixed inset-0 flex justify-center items-center bg-[var(--background)] z-40">
-          <div className="bg-[var(--color2)] m-10 rounded-xl w-[1150px] h-auto border-double border-[10px] border-[var(--color6)]">
-            <div className="flex flex-col items-center p-10 gap-4 text-[17px]">
-              <p className="text-3xl underline decoration-2 underline-offset-4 text-[var(--color4)]">
+          <div className="relative bg-[var(--color2)] m-10 rounded-xl w-[950px] h-auto border-double border-[10px] border-[var(--color6)]">
+            {/* Pollo encima y a la izquierda */}
+            <Image
+              src="/Images/chicken2.png"
+              alt="Pollete el mágico"
+              width={500}
+              height={300}
+              className="absolute bottom-[-17] right-[-150] z-30 p-2 object-contain"
+            />
+
+            <div className="p-10">
+              <p className="text-3xl underline decoration-2 underline-offset-4 text-[var(--color4)] text-center mb-6">
                 ¿Tienes dudas sobre como crear tu personaje?
               </p>
-              <p className="text-xl">
-                No te preocupes, nuestro pollo mágico llamado
+              <p className="text-xl text-center mb-6">
+                No te preocupes, nuestro representante
                 <span className="text-[var(--color1)]"> Pollete </span>
-                te explicara todo lo que necesitas saber.
+                te explicará todo lo que necesitas saber.
               </p>
               <div>
                 <p className="text-2xl mb-2 text-[var(--color4)]">
@@ -30,116 +39,105 @@ const Helpbutton = () => {
                 <div className="pl-5">
                   <p>
                     Una raza define la herencia biológica y cultural de un
-                    personaje, otorgándole rasgos especiales, atributos, idioma
-                    y habilidades únicas que influyen en su historia y
+                    personaje, otorgándole rasgos especiales, atributos y
+                    habilidades únicas que influyen en su historia y
                     jugabilidad.
                   </p>
                   <p>
-                    En este apartado podras elegir entre una multitud de razas,
-                    de las cuales, elfo, enano y gnomo tienen otra eleccion mas
+                    En este apartado podrás elegir entre una multitud de razas,
+                    de las cuales, elfo, enano y gnomo tienen otra elección más
                     para elegir, la subraza.
                   </p>
                   <p>
-                    Cada raza y subraza tienen habilidades unicas, y a medida
-                    que eliges puedes verlas para comparar y elegir la que mas
-                    se ajusta a tu heroe.
+                    Cada raza y subraza tienen habilidades únicas, y a medida
+                    que eliges puedes verlas para comparar y elegir la que más
+                    se ajusta a tu héroe.
                   </p>
                 </div>
-                <br></br>
+                <br />
+                <div className="mb-6">
+                  <p className="text-2xl mb-2 text-[var(--color4)]">
+                    • ¿ Qué es una clase ?
+                  </p>
+                  <div className="pl-5">
+                    <p>
+                      Una clase representa la profesión y estilo de combate de
+                      un personaje, determinando sus habilidades, equipo, magia
+                      y progresión a lo largo del juego.
+                    </p>
+                    <p>
+                      En esta elección podrás elegir entre una multitud de
+                      clases, con sus respectivas subclases.
+                    </p>
+                    <p>
+                      Cada clase y subclase tienen habilidades únicas, así que
+                      asegúrate de elegir lo que mejor te convenga.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
                 <p className="text-2xl mb-2 text-[var(--color4)]">
-                  • ¿ Qué es una clase ?
+                  • ¿ Qué es el trasfondo ?
                 </p>
                 <div className="pl-5">
                   <p>
-                    Una clase representa la profesión y estilo de combate de un
-                    personaje, determinando sus habilidades, equipo, magia y
-                    progresion a lo largo del juego.
+                    El trasfondo es la historia y origen de un personaje antes
+                    de comenzar tu aventura.
                   </p>
                   <p>
-                    En esta eleccion podras elegir entre una multitud de clases,
-                    con sus respectivas subclases.
-                  </p>
-                  <p>
-                    Cada clase y subclase tienen habilidades unicas, y a medida
-                    que eliges puedes verlas para comparar y elegir la que mas
-                    se ajusta a tu heroe.
+                    Define sus habilidades, ayudando a darle profundidad y
+                    contexto dentro del juego.
                   </p>
                 </div>
               </div>
-              <div className="flex justify-around">
-                <div>
-                  <div>
-                    <p className="text-2xl mb-2 text-[var(--color4)]">
-                      • ¿ Qué es el trasfondo ?
-                    </p>
-                    <div className="pl-5">
-                      <p>
-                        El Trasfondo es la historia y origen de un personaje
-                        antes de comenzar tu aventura.
-                      </p>
-                      <p>
-                        Define sus habilidades, motivaciones... ayudando a darle
-                        profundidad y contexto dentro del juego.
-                      </p>
-                    </div>
-                  </div>
-                  <br></br>
-                  <div>
-                    <p className="text-2xl mb-2 text-[var(--color4)]">
-                      • ¿ Cómo crear tus atributos ?
-                    </p>
-                    <div className="pl-5">
-                      <p>
-                        Los atributos son la parte mas importante de tu
-                        personaje, definirlos es muy sencillo, hay que tirar un
-                        d6 cuatro veces, la tirada mas baja se descarta, y la
-                        suma de las otras tres tiradas hacen el atributo, asi
-                        hasta completarlos todos.
-                      </p>
-                    </div>
-                  </div>
-                  <br></br>
-                  <div>
-                    <p className="text-2xl mb-2 text-[var(--color4)]">
-                      • ¿ Cuánta Vida tendra tu personaje ?
-                    </p>
-                    <div className="pl-5">
-                      <p>
-                        Para saber la vida que tendra tu personaje, para suerte
-                        de ti, jugador, no sera al azar, sino que se trata de
-                        una suma entre tu maximo del dado de daño y tu
-                        constitución.
-                      </p>
-                    </div>
-                  </div>
-                  <br></br>
-                  <p className="mb-2 pl-5">
-                    Después de toda esta chapa estaras preparado para dar pie a
-                    los Reinos Olvidados.
+              <br />
+              <div>
+                <p className="text-2xl mb-2 text-[var(--color4)]">
+                  • ¿ Cómo crear tus atributos ?
+                </p>
+                <div className="pl-5">
+                  <p className="w-[600px]">
+                    Los atributos son la parte más importante de tu personaje,
+                    definirlos es muy sencillo, hay que tirar un d6 cuatro
+                    veces, la tirada más baja se descarta, y la suma de las
+                    otras tres tiradas hacen el atributo, así hasta completarlos
+                    todos.
                   </p>
-                  <p className=" pl-5">
-                    Mucha suerte soldado, la necesitaras...
-                  </p>
-                </div>
-                <div className="flex flex-col justify-end items-center h-full">
-                  <Image
-                    src="/Images/chicken2.png"
-                    alt="Imagen de los soldados"
-                    width={1100}
-                    height={1000}
-                    className="p-6 rounded-xl object-contain"
-                  />
                 </div>
               </div>
+              <br />
+              <div>
+                <p className="text-2xl mb-2 text-[var(--color4)]">
+                  • ¿ Cuánta vida tendrá tu personaje ?
+                </p>
+                <div className="pl-5">
+                  <p>
+                    Para saber la vida que tendrá tu personaje, para suerte de
+                    ti, soldado, no será
+                    <br></br>
+                    al azar, sino que se trata de una suma entre tu máximo del
+                    dado de daño y tu constitución.
+                  </p>
+                </div>
+              </div>
+              <br />
+              <p className="mb-2 pl-5">
+                Después de toda esta chapa estarás preparado para dar pie a los
+                Reinos Olvidados.
+              </p>
+              <p className="pl-5">Mucha suerte soldado, la necesitarás...</p>
             </div>
           </div>
         </div>
       )}
 
+      {/* Botón de ayuda */}
       <div className="fixed bottom-4 right-4 z-50">
         <button
           onClick={handlehelpbutton}
-          className="h-[80px] w-[80px]  rounded-full border-yellow-300 border-double border-4 flex items-center justify-center"
+          className="h-[80px] w-[80px] rounded-full border-yellow-300 border-double border-4 flex items-center justify-center"
         >
           <p className="text-[80px] text-yellow-400">?</p>
         </button>
@@ -149,4 +147,3 @@ const Helpbutton = () => {
 };
 
 export default Helpbutton;
-// layout="intrinsic"
