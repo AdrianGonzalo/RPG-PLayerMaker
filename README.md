@@ -29,5 +29,21 @@ User:
 ### Technologies Used Fronted
 
     • JS
+
     • React
+    
     • Nextjs
+
+### TODO
+
+#### Fronted
+
+    Implementar IA para creador de imagenes siguiendo los parametros elegidos por el usuario
+    
+    Mejorar la interfaz
+
+#### Backend
+
+    Pasar los .js de datos a una base de datos
+
+Poco a poco ire añadiendo mas cosas para el proyecto
