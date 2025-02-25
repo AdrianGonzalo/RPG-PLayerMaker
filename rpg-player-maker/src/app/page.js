@@ -22,7 +22,14 @@ export default function Home() {
       {!windowAccepted && <Window onAccept={handleAccept} />}
       {windowAccepted && (
         <>
-          <Sound src="/Sounds/Zelda.mp3" />
+          <Sound
+            sources={[
+              "/Sounds/Zelda.mp3",
+              "/Sounds/MarioGalaxy.mp3",
+              "/Sounds/Gerudo.mp3",
+            ]}
+          />
+
           <Helpbutton />
           <Allcreate />
           <Footer />

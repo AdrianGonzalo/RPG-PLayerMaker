@@ -1,9 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { Volume2, VolumeX } from "lucide-react";
 
-const Sound = ({ src }) => {
+const Sound = ({ sources = [] }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   const audioRef = useRef(null);
 
   const toggleMute = () => {
@@ -13,18 +14,41 @@ const Sound = ({ src }) => {
     }
   };
 
+  const handlePlayPause = () => {
+    if (audioRef.current) {
+      if (isPlaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play().catch(() => {});
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % sources.length);
+    setIsPlaying(true);
+  };
+
+  const handlePrevious = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + sources.length) % sources.length
+    );
+    setIsPlaying(true);
+  };
+
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = 0.02;
+      audioRef.current.load();
+      if (isPlaying) {
+        audioRef.current.play().catch(() => {});
+      }
     }
   }, [currentIndex]);
 
   const handleEnded = () => {
-    if (currentIndex < sources.length - 1) {
-      setCurrentIndex((prevIndex) => prevIndex + 1);
-    } else {
-      setCurrentIndex(0);
-    }
+    handleNext();
   };
 
   return (
@@ -36,7 +60,13 @@ const Sound = ({ src }) => {
         zIndex: 1000,
       }}
     >
-      <audio ref={audioRef} src={src} autoPlay loop />
+      <audio
+        key={sources[currentIndex]}
+        ref={audioRef}
+        src={sources[currentIndex]}
+        autoPlay
+        onEnded={handleEnded}
+      />
       <button
         onClick={toggleMute}
         style={{
