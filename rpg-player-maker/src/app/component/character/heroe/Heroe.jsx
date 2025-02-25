@@ -310,6 +310,7 @@ import HeroeRaceDetails from "./HeroeRaceDetails";
 import HeroeClassDetails from "./HeroeClassDetails";
 import HeroeBackground from "./HeroeBackground";
 import HeroeHistory from "./HeroeHistory";
+import HeroePDFDownload from "./HeroePDFDownload";
 
 const Heroe = ({ character }) => {
   //Code the Name and Sex
@@ -322,12 +323,22 @@ const Heroe = ({ character }) => {
   });
 
   //Code Stats
+  const [stats, setStats] = useState({
+    attributesWithBonuses: {},
+    totalHP: 0,
+  });
+
+  const handleStatsUpdate = useCallback((statsData) => {
+    setStats(statsData);
+  }, []);
 
   //Code the Race
   const [raceBonuses, setRaceBonuses] = useState({});
   const [subrace, setSubrazeBonuses] = useState({});
 
   const handleRaceBonusesUpdate = useCallback((race, subrace) => {
+    console.log("Race Bonuses:", race?.bonificadores);
+    console.log("Subrace Bonuses:", subrace?.bonificadores);
     setRaceBonuses(race?.bonificadores || {});
     setSubrazeBonuses(subrace?.bonificadores || {});
   }, []);
@@ -368,6 +379,7 @@ const Heroe = ({ character }) => {
         selectedRace={raceBonuses}
         selectedSubrace={subrace}
         selectedSubclass={subclassBonuses}
+        onStatsUpdate={handleStatsUpdate}
       />
 
       <HeroeRaceDetails
@@ -388,6 +400,16 @@ const Heroe = ({ character }) => {
       <HeroeHistory
         character={character}
         onBonusesHistory={handleHistoryUpdate}
+      />
+
+      <HeroePDFDownload
+        character={character}
+        raceBonuses={raceBonuses}
+        subraceBonuses={subrace}
+        attributesWithBonuses={stats.attributesWithBonuses}
+        totalHP={stats.totalHP}
+        selectedClass={classBonuses}
+        selectedSubclass={subclassBonuses}
       />
     </div>
   );

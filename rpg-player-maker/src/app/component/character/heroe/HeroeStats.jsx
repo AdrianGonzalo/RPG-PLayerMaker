@@ -9,7 +9,12 @@ const HeroeStats = ({
   selectedRace,
   selectedSubrace,
   selectedSubclass,
+  onStatsUpdate,
 }) => {
+  console.log("Character Attributes:", character.attributes);
+  console.log("Race Bonuses:", selectedRace);
+  console.log("Subrace Bonuses:", selectedSubrace);
+
   const hitDieMax = selectedClass.hitDie
     ? parseInt(selectedClass.hitDie.replace("d", ""))
     : 0;
@@ -24,21 +29,24 @@ const HeroeStats = ({
   const subclassBonuses = selectedSubclass || {};
 
   const attributeMap = {
-    Fuerza: "fuerza",
-    Destreza: "destreza",
-    Constitución: "constitucion",
-    Inteligencia: "inteligencia",
-    Sabiduría: "sabiduria",
-    Carisma: "carisma",
+    Fuerza: "Fuerza",
+    Destreza: "Destreza",
+    Constitución: "Constitución",
+    Inteligencia: "Inteligencia",
+    Sabiduría: "Sabiduría",
+    Carisma: "Carisma",
   };
 
   const attributesWithBonuses = {};
   Object.keys(attributeMap).forEach((attr) => {
     const baseValue = character.attributes?.[attr] || 10;
     const mappedKey = attributeMap[attr];
+
     const totalBonus =
-      (raceBonuses[mappedKey] || 0) +
-      (subraceBonuses[mappedKey] || 0) +
+      (raceBonuses[mappedKey] || raceBonuses[mappedKey.toLowerCase()] || 0) +
+      (subraceBonuses[mappedKey] ||
+        subraceBonuses[mappedKey.toLowerCase()] ||
+        0) +
       (classBonuses[mappedKey] || 0) +
       (subclassBonuses[mappedKey] || 0);
 
@@ -48,6 +56,18 @@ const HeroeStats = ({
       total: baseValue + totalBonus,
     };
   });
+
+  useEffect(() => {
+    const statsData = {
+      attributesWithBonuses,
+      totalHP,
+    };
+
+    if (onStatsUpdate) {
+      onStatsUpdate(statsData);
+    }
+  }, [JSON.stringify(attributesWithBonuses), totalHP]);
+
   return (
     <div>
       <div className="flex justify-center items-center gap-10 mb-6">

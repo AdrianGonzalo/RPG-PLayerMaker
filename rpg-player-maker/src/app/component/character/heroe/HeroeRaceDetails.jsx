@@ -22,7 +22,7 @@ const HeroeRaceDetails = ({ character, onBonusesUpdateRace }) => {
     setRaceBonuses(raceBonus);
     setSubrazeBonuses(subraceBonus);
 
-    onBonusesUpdateRace(raceBonus, subraceBonus);
+    onBonusesUpdateRace(selectedRace, selectedSubrace);
   }, [character.race, character.subrace, onBonusesUpdateRace]);
 
   return (
