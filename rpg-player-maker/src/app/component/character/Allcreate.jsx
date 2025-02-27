@@ -2,7 +2,7 @@
 
 import { razas } from "../../utils/Race";
 import { clases } from "../../utils/Classs";
-import { Errors } from "../../utils/Errors";
+import { Errors } from "@/app/errors/Errors";
 
 import { useState } from "react";
 
