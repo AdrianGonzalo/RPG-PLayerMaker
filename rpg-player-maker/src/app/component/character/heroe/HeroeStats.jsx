@@ -31,9 +31,9 @@ const HeroeStats = ({
   const attributeMap = {
     Fuerza: "Fuerza",
     Destreza: "Destreza",
-    Constitución: "Constitución",
+    Constitucion: "Constitucion",
     Inteligencia: "Inteligencia",
-    Sabiduría: "Sabiduría",
+    Sabiduria: "Sabiduria",
     Carisma: "Carisma",
   };
 
@@ -72,7 +72,7 @@ const HeroeStats = ({
     <div>
       <div className="flex justify-center items-center gap-10 mb-6">
         {/* Columna Izquierda (Atributos) */}
-        <div className="flex flex-col justify-center text-right w-[150px]">
+        <div className="flex flex-col justify-center text-right w-[175px]">
           {Object.keys(attributeMap).map((attr) => {
             const { base, bonus } = attributesWithBonuses[attr];
             return (

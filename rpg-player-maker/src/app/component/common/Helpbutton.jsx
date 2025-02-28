@@ -14,23 +14,9 @@ const Helpbutton = () => {
       {visible && (
         <div className="fixed inset-0 flex justify-center items-center bg-[var(--background)] z-40">
           <div className="relative bg-[var(--color2)] m-10 rounded-xl w-[950px] h-auto border-double border-[10px] border-[var(--color6)]">
-            {/* Pollo encima y a la izquierda */}
-            <Image
-              src="/Images/chicken2.png"
-              alt="Pollete el mágico"
-              width={500}
-              height={300}
-              className="absolute bottom-[-17] right-[-150] z-30 p-2 object-contain"
-            />
-
             <div className="p-10">
               <p className="text-3xl underline decoration-2 underline-offset-4 text-[var(--color4)] text-center mb-6">
                 ¿Tienes dudas sobre como crear tu personaje?
-              </p>
-              <p className="text-xl text-center mb-6">
-                No te preocupes, nuestro representante
-                <span className="text-[var(--color1)]"> Pollete </span>
-                te explicará todo lo que necesitas saber.
               </p>
               <div>
                 <p className="text-2xl mb-2 text-[var(--color4)]">
@@ -98,7 +84,7 @@ const Helpbutton = () => {
                   • ¿ Cómo crear tus atributos ?
                 </p>
                 <div className="pl-5">
-                  <p className="w-[600px]">
+                  <p>
                     Los atributos son la parte más importante de tu personaje,
                     definirlos es muy sencillo, hay que tirar un d6 cuatro
                     veces, la tirada más baja se descarta, y la suma de las
@@ -115,10 +101,8 @@ const Helpbutton = () => {
                 <div className="pl-5">
                   <p>
                     Para saber la vida que tendrá tu personaje, para suerte de
-                    ti, soldado, no será
-                    <br></br>
-                    al azar, sino que se trata de una suma entre tu máximo del
-                    dado de daño y tu constitución.
+                    ti, soldado, no será al azar, sino que se trata de una suma
+                    entre tu máximo del dado de daño y tu constitución.
                   </p>
                 </div>
               </div>
