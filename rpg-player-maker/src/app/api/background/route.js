@@ -1,15 +1,15 @@
 import { NextResponse } from "next/server";
-import clientPromise from "@/app/api/db";
+import clientPromise from "../db";
 
 export async function GET() {
   try {
     const client = await clientPromise;
     const db = client.db("RPGDataBase");
-    const races = await db.collection("races").find().toArray();
+    const background = await db.collection("background").find().toArray();
 
-    return NextResponse.json(races);
+    return NextResponse.json(background);
   } catch (error) {
-    console.error("Error en GET /api/races:", error);
+    console.log("Error en GET /api/background");
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
