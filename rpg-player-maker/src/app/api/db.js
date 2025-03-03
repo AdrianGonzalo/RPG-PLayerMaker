@@ -9,6 +9,8 @@ if (!uri) {
 }
 
 let client = new MongoClient(uri, options);
+console.log("🔍 Intentando conectar a MongoDB con URI:", uri);
+
 let clientPromise = client.connect();
 
 export default clientPromise;
