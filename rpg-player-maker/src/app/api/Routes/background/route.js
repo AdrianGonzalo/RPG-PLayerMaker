@@ -1,15 +1,10 @@
-import { NextResponse } from "next/server";
-import clientPromise from "../db";
+import { getBackground } from "../../logic/backgroundLogic";
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db("RPGDataBase");
-    const background = await db.collection("background").find().toArray();
-
-    return NextResponse.json(background);
+    const background = await getBackground();
+    return Response.json(background, { status: 200 });
   } catch (error) {
-    console.log("Error en GET /api/background");
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    Response.json({ message: "Error interno del servidor" }, { status: 500 });
   }
 }

@@ -1,15 +1,13 @@
-import { NextResponse } from "next/server";
-import clientPromise from "../db";
+import { getClasses } from "../../logic/classesLogic";
 
 export async function GET() {
   try {
-    const client = await clientPromise;
-    const db = client.db("RPGDataBase");
-    const classes = await db.collection("classes").find().toArray();
-
-    return NextResponse.json(classes);
+    const classes = await getClasses();
+    return Response.json(classes, { status: 200 });
   } catch (error) {
-    console.log("Error en GET /api/classes:", error);
-    return Response.json({ error: error.message }, { status: 500 });
+    return Response.json(
+      { message: "Error interno del servidor" },
+      { status: 500 }
+    );
   }
 }
