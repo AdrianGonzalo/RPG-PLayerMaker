@@ -19,7 +19,7 @@ const HeroeBackground = ({ character, onBonusesBackground }) => {
       {character.background && (
         <div className="mt-4 text-lg border-4 border-slate-600 w-[1000px]">
           <div className="mt-4 mb-4 text-4xl text-[var(--color4)] flex justify-center items-center gap-4 ">
-            Trasfondo: {character.background.name}
+            Trasfondo: {character.background.nombre}
             <div
               onClick={toggleVisibilityBackground}
               style={{ cursor: "pointer", fontSize: "18px" }}
@@ -31,7 +31,7 @@ const HeroeBackground = ({ character, onBonusesBackground }) => {
           {isOpenBackground && (
             <>
               <p className="text-2xl text-center">
-                {character.background.description}
+                {character.background.descripcion}
               </p>
               <div className="flex items-center justify-center my-6">
                 <p className="text-2xl  text-[var(--color7)]">• Habilidades:</p>
