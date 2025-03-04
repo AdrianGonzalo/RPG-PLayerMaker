@@ -1,4 +1,4 @@
-import { getRaces } from "@/app/api/logic/racesLogic";
+import { getRaces } from "../../logic/racesLogic";
 
 export async function GET() {
   try {

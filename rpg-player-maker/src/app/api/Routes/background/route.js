@@ -5,6 +5,9 @@ export async function GET() {
     const background = await getBackground();
     return Response.json(background, { status: 200 });
   } catch (error) {
-    Response.json({ message: "Error interno del servidor" }, { status: 500 });
+    return Response.json(
+      { message: "Error interno del servidor" },
+      { status: 500 }
+    );
   }
 }
