@@ -1,3 +1,13 @@
+## Arquitectuda Hexagonal
+
+#### ...Logic.js
+
+Interactua con la base de datos y devuelve los datos o errores sin HTTP
+
+#### route.js
+
+Maneja las peticiones HTTP, llama a ...Logic.js y responde con un Response.json()
+
 ## Estructura con varias bases de datos
 
 #### MongoDB
@@ -50,36 +60,14 @@ In the future
 
 In the future
 
-## Start Debugger Backend
+## Start Debugger Backend without attach
 
 #### Debugger in Chrome
 
-Use `npm run dev --inspect-brk` to up the server mode debugger
-
-Open `chrome://inspect/`
-
-Click in the Node
-
-Open the component you want to look at
-
-Place the breackpoints
-
 #### Debugger in VsCode
 
-Use `npm run dev --inspect-brk` to up the server mode debugger
+## Start Debugger Backend with attach
 
-Place the breackpoints in the maring left
+#### Debugger in Chrome
 
-Press `ctrl + shift + D` and click run and debug
-
-Make a the peticion
-
-## Arquitectuda Hexagonal
-
-#### ...Logic.js
-
-Interactua con la base de datos y devuelve los datos o errores sin HTTP
-
-#### route.js
-
-Maneja las peticiones HTTP, llama a ...Logic.js y responde con un Response.json()
+#### Debugger in VsCode
